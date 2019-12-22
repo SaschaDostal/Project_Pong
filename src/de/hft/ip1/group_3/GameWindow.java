@@ -1,43 +1,32 @@
 package de.hft.ip1.group_3;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
+import java.awt.Dimension;
 
 public class GameWindow {
 
-	private JFrame frame;
+    private GameBoard frame;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GameWindow window = new GameWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    /**
+     * Create the application.
+     */
+    public GameWindow(GameBoard board) {
+        this.frame = board;
+        initialize();
+        this.frame.setVisible(true);
+    }
 
-	/**
-	 * Create the application.
-	 */
-	public GameWindow() {
-		initialize();
-	}
+    public GameBoard getGameBoard() {
+        return this.frame;
+    }
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
+    /**
+     * Initialize the contents of the frame.
+     */
+    private void initialize() {
+        frame.setBounds(100, 100, 450, 300);
+        frame.setMinimumSize(new Dimension(300, 300));
+        frame.setMaximumSize(new Dimension(2560, 2560));
+        frame.setDefaultCloseOperation(GameBoard.EXIT_ON_CLOSE);
+    }
 
 }
