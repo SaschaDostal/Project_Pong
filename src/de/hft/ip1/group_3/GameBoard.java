@@ -1,6 +1,7 @@
 package de.hft.ip1.group_3;
 
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.util.NoSuchElementException;
 
 import javax.swing.JFrame;
@@ -24,17 +25,41 @@ public class GameBoard extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
-        contentPane = new JPanel();
-        contentPane.setBackground(Color.BLACK);
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new BorderLayout(0, 0));
-        
-        for (GameComponent elem : gameComponents) {
-            contentPane.add(elem);
-        }
+        contentPane = new JPanel() {
+            @Override
+            public void paint(Graphics graphics)
+            {
+                super.paint(graphics);
+
+                graphics.setColor(Color.WHITE);
+                this.setBackground(Color.BLACK);
+                for (GameComponent elem: gameComponents)
+                {
+                    if (elem instanceof Ball)
+                    {
+                        int offset = elem.hitbox.width / 2;
+                        graphics.fillOval(elem.pos.getX() - offset,
+                            elem.getPosition().getY() - offset,
+                            (int) elem.hitbox.getWidth(),
+                            (int) elem.hitbox.getHeight());
+                    }
+                    else
+                    {
+                        graphics.fillRect(elem.pos.getX(), elem.pos.getY(), (int) elem.hitbox.getWidth(), (int) elem.hitbox.getHeight());
+                    }
+                }
+            }
+        };
+//        contentPane.setBackground(Color.BLACK);
+//        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+//        contentPane.setLayout(new BorderLayout(0, 0));
+
+//        for (GameComponent elem : this.gameComponents) {
+//            contentPane.add(elem);
+//        }
         contentPane.revalidate();
         contentPane.repaint();
-        
+
         setContentPane(contentPane);
     }
 
