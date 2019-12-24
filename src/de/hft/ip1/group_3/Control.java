@@ -12,9 +12,9 @@ public class Control {
 
     public static void main(String[] args) {
         Control me = new Control();
-        me.ball = new Ball(1, new Position(1, 1), true, new Rectangle(8, 8), 10);
-        me.players[0] = new Player(0, 0, new PlayerBar(0, new Position(1, 1), true, new Rectangle(8, 20), 10));
-        me.players[1] = new Player(1, 0, new PlayerBar(1, new Position(1, 1), true, new Rectangle(8, 20), 10));
+        me.ball = new Ball(1, new Position(5, 5), true, new Rectangle(8, 8), 10);
+        me.players[0] = new Player(0, 0, new PlayerBar(0, new Position(10, 1), true, new Rectangle(8, 20), 10));
+        me.players[1] = new Player(1, 0, new PlayerBar(1, new Position(20, 1), true, new Rectangle(8, 20), 10));
         me.board = new GameBoard(new GameComponent[] { me.ball, me.players[0].getBar(), me.players[1].getBar() });
         EventQueue.invokeLater(new Runnable() {
             @Override
