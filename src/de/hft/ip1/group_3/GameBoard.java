@@ -1,12 +1,10 @@
 package de.hft.ip1.group_3;
 
-import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.util.NoSuchElementException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 
 public class GameBoard extends JFrame {
@@ -26,37 +24,19 @@ public class GameBoard extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         contentPane = new JPanel() {
+            private static final long serialVersionUID = 1L;
+
             @Override
-            public void paint(Graphics graphics)
-            {
+            public void paint(Graphics graphics) {
                 super.paint(graphics);
 
                 graphics.setColor(Color.WHITE);
                 this.setBackground(Color.BLACK);
-                for (GameComponent elem: gameComponents)
-                {
-                    if (elem instanceof Ball)
-                    {
-                        int offset = elem.hitbox.width / 2;
-                        graphics.fillOval(elem.pos.getX() - offset,
-                            elem.getPosition().getY() - offset,
-                            (int) elem.hitbox.getWidth(),
-                            (int) elem.hitbox.getHeight());
-                    }
-                    else
-                    {
-                        graphics.fillRect(elem.pos.getX(), elem.pos.getY(), (int) elem.hitbox.getWidth(), (int) elem.hitbox.getHeight());
-                    }
+                for (GameComponent elem : gameComponents) {
+                    elem.paintComponent(graphics);
                 }
             }
         };
-//        contentPane.setBackground(Color.BLACK);
-//        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-//        contentPane.setLayout(new BorderLayout(0, 0));
-
-//        for (GameComponent elem : this.gameComponents) {
-//            contentPane.add(elem);
-//        }
         contentPane.revalidate();
         contentPane.repaint();
 
@@ -95,7 +75,6 @@ public class GameBoard extends JFrame {
     }
 
     public void draw() {
-        //TODO: for some reason only the first PlayerBar is being repainted
         this.repaint();
     }
 
