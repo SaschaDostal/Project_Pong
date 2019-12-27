@@ -1,5 +1,8 @@
 package de.hft.ip1.group_3;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.security.InvalidParameterException;
 
 public class ScoringSystem {
@@ -28,7 +31,7 @@ public class ScoringSystem {
 		return playerPoints;
 	}
 	
-	public void addPointToPlayer(int playerNumber) {
+	public void addPointToPlayer(int playerNumber) throws InvalidParameterException{
 		if (playerNumber > numberOfPlayers) {
 			throw new InvalidParameterException("Player does not exist!");
 		}
@@ -47,4 +50,21 @@ public class ScoringSystem {
 		pointsPlayer3 = 0;
 		pointsPlayer4 = 0;
 	}
+	
+	public void printScore( String[] names) throws InvalidParameterException {
+		try(BufferedWriter writer = new BufferedWriter(new FileWriter("Scores.txt", true));){
+			if(names.length < numberOfPlayers) {
+				throw new InvalidParameterException("Not enough names for all players!");
+			}
+			switch(numberOfPlayers) {
+			case 1: writer.append(numberOfPlayers + " player game. Score: " + names[0] + ": " + pointsPlayer1 + "\n"); break;
+			case 2: writer.append(numberOfPlayers + " player game. Scores: " + names[0] + ": " + pointsPlayer1 + ", " + names[1] + ": " + pointsPlayer2 + "\n"); break;
+			case 3: writer.append(numberOfPlayers + " player game. Scores: " + names[0] + ": " + pointsPlayer1 + ", " + names[1] + ": " + pointsPlayer2 + ", " + names[2] + ": " + pointsPlayer3 + "\n"); break;
+			case 4: writer.append(numberOfPlayers + " player game. Scores: " + names[0] + ": " + pointsPlayer1 + ", " + names[1] + ": " + pointsPlayer2 + ", " + names[2] + ": " + pointsPlayer3 + ", " + names[3] + ": " + pointsPlayer4 + "\n"); break;
+			}
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+	}
+	
 }

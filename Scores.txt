@@ -1,0 +1,2 @@
+4 player game. Scores: Hans: 0, Klaus: 0, Peter: 0, Franz: 0
+2 player game. Scores: Hans: 0, Klaus: 0
