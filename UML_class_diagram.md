@@ -29,6 +29,9 @@ class Ball {
   -speed: int
   +getSpeed: int
 }
+class Wall {
+
+}
 class Control {
   -players: Player[]
   -ball: Ball
@@ -44,14 +47,36 @@ class Player {
   +getBar(): Playerbar
   +goal()
 }
+class ScoringSystem {
+    -numberOfPlayers: int
+    -pointsPlayer1: int
+    -pointsPlayer2: int
+    -pointsPlayer3: int
+    -pointsPlayer4: int
+    +addPointToPlayer(player: int)
+    +getPointsOfPlayer(player: int): int
+    +resetPlayerPoints()
+    +printScore(names: String[])
+}
+class GameWindow {
+
+}
+class Movenment {
+
+}
+class Scaling {
+
+}
 
 GameComponent "m" -- "1" GameBoard: has <
 GameComponent <|-- PlayerBar
 GameComponent <|-- Ball
+GameComponent <|-- Wall
 GameComponent "1" -- "1//m" Hitbox: has >
 Control "1" -- "1" GameBoard: manages >
 Control "1" -- "1" Ball: manages >
-Control "1" -- "2..n" Player: manages >
+Control "1" -- "1..4" Player: manages >
+Control "1" -- "1" ScoringSystem: manages >
 Player "1" -- "1" PlayerBar: has >
-note "m = [1, inf)\nn = inf" as N1
+note "m = [1, inf)" as N1
 ```
