@@ -12,9 +12,9 @@ public class Control {
 
     public static void main(String[] args) {
         Control me = new Control();
-        me.ball = new Ball(1, new Position(5, 5), true, new Rectangle(8, 8), 10);
-        me.players[0] = new Player(0, 0, new PlayerBar(0, new Position(10, 1), true, new Rectangle(8, 20), 10));
-        me.players[1] = new Player(1, 0, new PlayerBar(1, new Position(20, 1), true, new Rectangle(8, 20), 10));
+        me.ball = new Ball(1, new Position(5, 5), true, new Rectangle(8, 8), 1);
+        me.players[0] = new Player(0, 0, new PlayerBar(0, new Position(10, 1), true, new Rectangle(8, 70), 10));
+        me.players[1] = new Player(1, 0, new PlayerBar(1, new Position(20, 1), true, new Rectangle(8, 70), 10));
         me.board = new GameBoard(new GameComponent[] { me.ball, me.players[0].getBar(), me.players[1].getBar() });
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -25,7 +25,7 @@ public class Control {
 
         while (true) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 break;
@@ -36,11 +36,14 @@ public class Control {
     }
 
     private void step() {
-        /* TODO: some transformation of things e.g.:
-        board.getBall().move(new Position(100, 10));
+        // TODO: some transformation of things e.g.:
+        
+        board.getBall().move();
+        
+        
         board.getPlayerBar1().move(new Position(10, 40));
         board.getPlayerBar2().move(new Position(50, 100));
-        */
+        
         board.draw();
     }
 

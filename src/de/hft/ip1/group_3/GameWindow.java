@@ -24,7 +24,7 @@ public class GameWindow {
      */
     private void initialize() {
         frame.setTitle("Pong");
-        frame.setBounds(100, 100, 450, 300);
+        frame.setBounds(100, 100, 750, 700);
         frame.setMinimumSize(new Dimension(300, 300));
         frame.setMaximumSize(new Dimension(2560, 2560));
         frame.setDefaultCloseOperation(GameBoard.EXIT_ON_CLOSE);
