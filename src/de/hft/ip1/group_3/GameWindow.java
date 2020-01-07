@@ -23,6 +23,7 @@ public class GameWindow {
      * Initialize the contents of the frame.
      */
     private void initialize() {
+        frame.setTitle("Pong");
         frame.setBounds(100, 100, 450, 300);
         frame.setMinimumSize(new Dimension(300, 300));
         frame.setMaximumSize(new Dimension(2560, 2560));
