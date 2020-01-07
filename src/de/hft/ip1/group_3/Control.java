@@ -13,11 +13,11 @@ public class Control {
 
     public static void main(String[] args) {
         Control me = new Control();
-        me.ball = new Ball(1, new Position(5, 5), true, new Rectangle(8, 8), 1);
-        me.players[0] = new Player(0, 0, new PlayerBar(0, new Position(0, 700 /2 - 35), true, new Rectangle(8, 70), 10));
-        me.players[1] = new Player(1, 0, new PlayerBar(1, new Position(700-24, 700 /2 - 35), true, new Rectangle(8, 70), 10));
-        me.walls[0] = new Wall(0, new Position(0, 0), true, new Rectangle(700, 5));
-        me.walls[1] = new Wall(1, new Position(0, 659), true, new Rectangle(700, 5));
+        me.ball = new Ball(1, new Position(Scaling.ballPosX, Scaling.ballPosY), true, new Rectangle(Scaling.ballRecX, Scaling.ballRecY), 1);
+        me.players[0] = new Player(0, 0, new PlayerBar(0, new Position(Scaling.playerBarPos1X, Scaling.playerBarPos1Y), true, new Rectangle(Scaling.playerBarRecX, Scaling.playerBarRecY), 10));
+        me.players[1] = new Player(1, 0, new PlayerBar(1, new Position(Scaling.playerBarPos2X, Scaling.playerBarPos2Y), true, new Rectangle(Scaling.playerBarRecX, Scaling.playerBarRecY), 10));
+        me.walls[0] = new Wall(0, new Position(Scaling.wallPos1X, Scaling.wallPos1Y), true, new Rectangle(Scaling.wallRecX, Scaling.wallRecY));
+        me.walls[1] = new Wall(1, new Position(Scaling.wallPos2X, Scaling.wallPos2Y), true, new Rectangle(Scaling.wallRecX, Scaling.wallRecY));
         me.board = new GameBoard(new GameComponent[] { me.ball, me.players[0].getBar(), me.players[1].getBar(), me.walls[0], me.walls[1] });
         EventQueue.invokeLater(new Runnable() {
             @Override
