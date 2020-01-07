@@ -1,7 +1,7 @@
 package de.hft.ip1.group_3;
 
 public class Scaling {
-    public static int sizeX = 700;
+    public static int sizeX = 1000;
     public static int sizeY = 700;
     
     public static int playerBarRecX = sizeX/100;
