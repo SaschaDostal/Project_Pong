@@ -31,61 +31,10 @@ public class Control {
             }
         });
 
-        KeyListener keylis2 = new KeyListener() {
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                switch (e.getKeyCode()) {
-                case KeyEvent.VK_UP:
-                    me.board.getPlayerBar2().moveUp();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    me.board.getPlayerBar2().moveDown();
-                    break;
-                }
-
-            }
-        };
-
-        KeyListener keylis = new KeyListener() {
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                switch (e.getKeyCode()) {
-                case KeyEvent.VK_W:
-                    me.board.getPlayerBar1().moveUp();
-                    System.out.println("Hallo");
-                    break;
-                case KeyEvent.VK_S:
-                    me.board.getPlayerBar1().moveDown();
-                    break;
-
-                }
-
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-        };
-
-        me.board.addKeyListener(keylis);
-        me.board.addKeyListener(keylis2);
+        Movement mov = new Movement(me);
+      
+        me.board.addKeyListener(mov.keylis);
+        me.board.addKeyListener(mov.keylis2);
         while (true) {
             try {
                 Thread.sleep(5);
@@ -110,5 +59,23 @@ public class Control {
     private void goal(Player goalingPlayer) {
         goalingPlayer.goal();
     }
+    public void UpWPressed() {
+       board.getPlayerBar1().moveUp();
 
+    }
+
+    public void UpKeyPressed() {
+        // TODO Auto-generated method stub
+        board.getPlayerBar2().moveUp();
+    }
+
+    public void DownKeyPressed() {
+        // TODO Auto-generated method stub
+        board.getPlayerBar2().moveDown();
+    }
+
+    public void DownSPressed() {
+        // TODO Auto-generated method stub
+        board.getPlayerBar1().moveDown();
+    }
 }
