@@ -24,5 +24,16 @@ public class PlayerBar extends GameComponent {
         g.setColor(Color.WHITE);
         g.fillRect(pos.getX(), pos.getY(), hitbox.width, hitbox.height);
     }
+    
+    public void moveUp() {
+        pos.setY(pos.getY()-10*1);
+        
+        
+    }
+    public void moveDown() {
+        pos.setY(pos.getY()+10*1);
+        
+        
+    }
 
 }
