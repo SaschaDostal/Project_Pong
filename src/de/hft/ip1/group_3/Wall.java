@@ -1,5 +1,6 @@
 package de.hft.ip1.group_3;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -14,8 +15,8 @@ public class Wall extends GameComponent{
 
     @Override
     public void paintComponent(Graphics g) {
-        // TODO Auto-generated method stub
-        
+        g.setColor(Color.gray);
+        g.fillRect(pos.getX(), pos.getY(), hitbox.width, hitbox.height);
     }
 
 }
