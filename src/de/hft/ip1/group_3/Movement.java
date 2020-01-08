@@ -5,13 +5,11 @@ import java.awt.event.KeyListener;
 
 public class Movement {
 
-    private Control con;
     private KeyListener keylis;
     private boolean upPressed, downPressed, wPressed, sPressed;
 
-    public Movement(Control c) {
+    public Movement() {
 
-        con = c;
         upPressed = false;
         downPressed = false;
         wPressed = false;
@@ -26,14 +24,12 @@ public class Movement {
                         switch (e.getKeyCode()) {
                         case KeyEvent.VK_W:
                             wPressed = true;
-                            System.out.println("Hallo");
                             break;
                         case KeyEvent.VK_S:
                             sPressed = true;
                             break;
                         case KeyEvent.VK_UP:
                             upPressed = true;
-                            System.out.println("Hallo");
                             break;
                         case KeyEvent.VK_DOWN:
                             downPressed = true;
