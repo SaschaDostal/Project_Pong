@@ -51,7 +51,6 @@ public class Control {
     }
 
     private void step() {
-        // TODO: some transformation of things e.g.:
         if (mov.isDownPressed()) {
             board.getPlayerBar1().moveDown();
         }
