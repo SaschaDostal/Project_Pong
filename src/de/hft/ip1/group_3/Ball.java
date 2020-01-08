@@ -24,9 +24,10 @@ public class Ball extends GameComponent {
         g.setColor(Color.RED);
         g.fillOval(pos.getX(), pos.getY(), 15, 15);
     }
+
     public void move() {
-        pos.setX(pos.getX()+1*speed);
-        
+        pos.setX(pos.getX() + 1 * speed);
+
     }
 
 }

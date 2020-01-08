@@ -5,107 +5,101 @@ import java.awt.event.KeyListener;
 
 public class Movement {
 
-    Control con;
+    private Control con;
+    private KeyListener keylis;
+    private boolean upPressed, downPressed, wPressed, sPressed;
 
     public Movement(Control c) {
 
         con = c;
+        upPressed = false;
+        downPressed = false;
+        wPressed = false;
+        sPressed = false;
+
         MyRunnable lisThread = new MyRunnable() {
+            @Override
             public void run() {
                 keylis = new KeyListener() {
                     @Override
                     public void keyPressed(KeyEvent e) {
                         switch (e.getKeyCode()) {
                         case KeyEvent.VK_W:
-                            UpWPressed();
+                            wPressed = true;
                             System.out.println("Hallo");
                             break;
                         case KeyEvent.VK_S:
-                            DownSPressed();
+                            sPressed = true;
                             break;
-                        }
-                    }
-
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                    }
-
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-                    }
-                };
-
-            }
-
-            public KeyListener getLis() {
-                return keylis2;
-            }
-        };
-        MyRunnable lisThread2 = new MyRunnable() {
-            public void run() {
-                keylis2 = new KeyListener() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-                    }
-
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                        // TODO Auto-generated method stub
-                    }
-
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-                        switch (e.getKeyCode()) {
                         case KeyEvent.VK_UP:
-                            UpKeyPressed();
+                            upPressed = true;
+                            System.out.println("Hallo");
                             break;
                         case KeyEvent.VK_DOWN:
-                            DownKeyPressed();
+                            downPressed = true;
                             break;
                         }
                     }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        switch (e.getKeyCode()) {
+                        case KeyEvent.VK_W:
+                            wPressed = false;
+                            break;
+                        case KeyEvent.VK_S:
+                            sPressed = false;
+                            break;
+                        case KeyEvent.VK_UP:
+                            upPressed = false;
+                            break;
+                        case KeyEvent.VK_DOWN:
+                            downPressed = false;
+                            break;
+                        }
+                    }
+
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                    }
                 };
+
             }
 
             public KeyListener getLis() {
-                return keylis2;
+                return this.keylis;
             }
         };
-        
-        lisThread.run();
+
+        new Thread(lisThread).run();
         keylis = lisThread.getLis();
-        
-        lisThread2.run();
-        keylis2 = lisThread2.getLis();
     }
 
-    KeyListener keylis2;
-    KeyListener keylis;
-
-    protected void UpWPressed() {
-        // TODO Auto-generated method stub
-        con.UpWPressed();
+    public boolean isUpPressed() {
+        return upPressed;
     }
 
-    protected void UpKeyPressed() {
-        // TODO Auto-generated method stub
-        con.UpKeyPressed();
+    public boolean isDownPressed() {
+        return downPressed;
     }
 
-    protected void DownKeyPressed() {
-        // TODO Auto-generated method stub
-        con.DownKeyPressed();
+    public boolean isWPressed() {
+        return wPressed;
     }
 
-    protected void DownSPressed() {
-        // TODO Auto-generated method stub
-        con.DownSPressed();
+    public boolean isSPressed() {
+        return sPressed;
     }
 
+    public KeyListener getKeyListener() {
+        return this.keylis;
+    }
 }
 
-abstract class MyRunnable implements Runnable{
+abstract class MyRunnable implements Runnable {
+
+    KeyListener keylis;
 
     protected abstract KeyListener getLis();
-    
+
 }

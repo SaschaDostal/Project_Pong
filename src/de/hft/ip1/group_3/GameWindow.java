@@ -5,6 +5,7 @@ import java.awt.Dimension;
 public class GameWindow {
 
     private GameBoard frame;
+
     /**
      * Create the application.
      */
@@ -23,7 +24,7 @@ public class GameWindow {
      */
     private void initialize() {
         frame.setTitle("Pong");
-        frame.setBounds(100, 100, Scaling.sizeX+14, Scaling.sizeY+36);
+        frame.setBounds(100, 100, Scaling.sizeX + 14, Scaling.sizeY + 36);
         frame.setMinimumSize(new Dimension(300, 300));
         frame.setMaximumSize(new Dimension(2560, 2560));
         frame.setDefaultCloseOperation(GameBoard.EXIT_ON_CLOSE);
