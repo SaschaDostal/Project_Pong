@@ -37,9 +37,7 @@ public class Control {
         });
 
         me.mov = new Movement();
-        
-        System.out.println(me.board);
-
+       
         while (true) {
             try {
                 Thread.sleep(50);

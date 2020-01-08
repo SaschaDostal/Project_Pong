@@ -20,12 +20,11 @@ public class GameBoard extends JPanel {
     public GameBoard(GameComponent[] gameComponents) {
         this.gameComponents = gameComponents;
 
-        setSize(Scaling.sizeX, Scaling.sizeY);
         setMinimumSize(new Dimension(300, 300));
         setMaximumSize(new Dimension(2560, 2560));
+        setPreferredSize(new Dimension(Scaling.sizeX, Scaling.sizeY));
         setVisible(true);
         setEnabled(true);
-        setLayout(new java.awt.FlowLayout());
         for (GameComponent comp : gameComponents) {
             add(comp);
         }
