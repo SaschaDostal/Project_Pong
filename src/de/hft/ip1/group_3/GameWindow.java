@@ -2,33 +2,43 @@ package de.hft.ip1.group_3;
 
 import java.awt.Dimension;
 
-public class GameWindow {
+import javax.swing.JFrame;
 
-    private GameBoard frame;
+public class GameWindow extends JFrame {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private GameBoard gameBoard;
 
     /**
      * Create the application.
      */
     public GameWindow(GameBoard board) {
-        this.frame = board;
+        this.gameBoard = board;
         initialize();
-        this.frame.setVisible(true);
+        this.setVisible(true);
     }
 
     public GameBoard getGameBoard() {
-        return this.frame;
+        return this.gameBoard;
     }
 
     /**
      * Initialize the contents of the frame.
      */
     private void initialize() {
-        frame.setTitle("Pong");
-        frame.setSize(new Dimension(1000, 700));
-        //frame.setBounds(100, 100, Scaling.sizeX + 14, Scaling.sizeY + 36);
-        frame.setMinimumSize(new Dimension(300, 300));
-        frame.setMaximumSize(new Dimension(2560, 2560));
-        frame.setDefaultCloseOperation(GameBoard.EXIT_ON_CLOSE);
+        setTitle("Pong");
+        setMinimumSize(new Dimension(300, 300));
+        setMaximumSize(new Dimension(2560, 2560));
+        add(gameBoard);
+        gameBoard.revalidate();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        revalidate();
+        doLayout();
+        validate();
     }
 
 }

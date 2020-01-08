@@ -32,11 +32,13 @@ public class Control {
             @Override
             public void run() {
                 me.window = new GameWindow(me.board);
+                me.window.addKeyListener(me.mov.getKeyListener());
             }
         });
 
-        me.mov = new Movement(me);
-        me.board.addKeyListener(me.mov.getKeyListener());
+        me.mov = new Movement();
+        
+        System.out.println(me.board);
 
         while (true) {
             try {

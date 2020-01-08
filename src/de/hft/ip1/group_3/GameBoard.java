@@ -3,15 +3,14 @@ package de.hft.ip1.group_3;
 import java.awt.Graphics;
 import java.util.NoSuchElementException;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.Dimension;
 
-public class GameBoard extends JFrame {
+public class GameBoard extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    private JPanel contentPane;
     private GameComponent[] gameComponents;
     private Position[] validPositions;
 
@@ -21,25 +20,27 @@ public class GameBoard extends JFrame {
     public GameBoard(GameComponent[] gameComponents) {
         this.gameComponents = gameComponents;
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        contentPane = new JPanel() {
-            private static final long serialVersionUID = 1L;
+        setSize(Scaling.sizeX, Scaling.sizeY);
+        setMinimumSize(new Dimension(300, 300));
+        setMaximumSize(new Dimension(2560, 2560));
+        setVisible(true);
+        setEnabled(true);
+        setLayout(new java.awt.FlowLayout());
+        for (GameComponent comp : gameComponents) {
+            add(comp);
+        }
+        revalidate();
+    }
 
-            @Override
-            public void paint(Graphics graphics) {
-                super.paint(graphics);
+    @Override
+    public void paint(Graphics graphics) {
+        super.paint(graphics);
 
-                graphics.setColor(Color.WHITE);
-                this.setBackground(Color.BLACK);
-                for (GameComponent elem : gameComponents) {
-                    elem.paintComponent(graphics);
-                }
-            }
-        };
-        contentPane.revalidate();
-        contentPane.repaint();
-
-        setContentPane(contentPane);
+        graphics.setColor(Color.WHITE);
+        this.setBackground(Color.BLACK);
+        for (GameComponent elem : gameComponents) {
+            elem.paintComponent(graphics);
+        }
     }
 
     public Ball getBall() throws NoSuchElementException {
