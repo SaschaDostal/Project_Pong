@@ -93,11 +93,30 @@ public class Control {
             board.getBall().setDirectionY( board.getBall().getDirectionY() * (-1));
         }
         if ( gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())) {
-            Score.addPointToPlayer(1); board.getBall().reset();
+            Score.addPointToPlayer(1); reset();
         }
         if ( gameComponents[0].getHitbox().intersects(gameComponents[6].getHitbox())){
-            Score.addPointToPlayer(2); board.getBall().reset(); 
+            Score.addPointToPlayer(2); reset();
         }
+    }
+    
+    public void reset() {
+        board.getBall().pos.setX(Scaling.sizeX/2 - Scaling.ballRecX/2);
+        board.getBall().pos.setY(Scaling.sizeY/2 - Scaling.ballRecY/2);
+        board.getBall().hitbox.setLocation(board.getBall().pos.getX(), board.getBall().pos.getY());
+        board.getBall().setSpeed(0);
+        board.getPlayerBar1().pos.setY(Scaling.playerBarPos1Y);
+        board.getPlayerBar1().hitbox.setLocation(Scaling.playerBarPos1X, Scaling.playerBarPos1Y);
+        board.getPlayerBar2().pos.setY(Scaling.playerBarPos2Y);
+        board.getPlayerBar2().hitbox.setLocation(Scaling.playerBarPos2X, Scaling.playerBarPos2Y);
+        board.draw();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();   
+        }
+        
+        board.getBall().setSpeed(1);
     }
 
     private void goal(Player goalingPlayer) {

@@ -34,11 +34,7 @@ public class Ball extends GameComponent {
         pos.setY(pos.getY() + (int) (directionY * speed));
         this.hitbox.setLocation(pos.getX(), pos.getY());
     }
-    public void reset() {
-        pos.setX(Scaling.sizeX/2 - Scaling.ballRecX/2);
-        pos.setY(Scaling.sizeY/2 - Scaling.ballRecY/2);
-        this.hitbox.setLocation(pos.getX(), pos.getY());
-    }
+  
 
     public void setSpeed(double d) {
         this.speed = (float) d;
