@@ -61,6 +61,11 @@ public class Control {
     }
 
     private void step() {
+        for (int i = 0; i < board.getBall().getSpeed(); i++) {
+            collision(board.getGameComponents());
+            board.getBall().move();
+            board.draw();
+        }
         if (mov.isDownPressed()) {
             board.getPlayerBar2().moveDown();
         }
@@ -74,7 +79,7 @@ public class Control {
             board.getPlayerBar1().moveDown();
         }
         collision(board.getGameComponents());
-        board.getBall().move();
+
         if (board.isValidHitboxPosition(board.getPlayerBar1().getHitbox()) == GameBoard.Validity.tooLow) {
             board.getPlayerBar1().move(new Position(Scaling.playerBarPos1X, Scaling.maxValid - Scaling.playerBarRecY));
         } else if (board.isValidHitboxPosition(board.getPlayerBar1().getHitbox()) == GameBoard.Validity.tooHigh) {
