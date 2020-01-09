@@ -95,26 +95,32 @@ public class Control {
     }
 
     private void collision(GameComponent[] gameComponents) {
-        if (gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox())) {
+        if (gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox()) && !(board.getBall().getLastComponentHit() == 1)) {
             board.getBall().setDirectionX(board.getBall().getDirectionX() * (-1));
             board.getBall().setSpeed(board.getBall().getSpeed() * 1.1);
+            board.getBall().setLastComponentHit(1);
         }
-        if (gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())) {
+        if (gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox()) && !(board.getBall().getLastComponentHit() == 2)) {
             board.getBall().setDirectionX(board.getBall().getDirectionX() * (-1));
             board.getBall().setSpeed(board.getBall().getSpeed() * 1.1);
+            board.getBall().setLastComponentHit(2);
         }
-        if (gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox())) {
+        if (gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox()) && !(board.getBall().getLastComponentHit() == 3)) {
             board.getBall().setDirectionY(board.getBall().getDirectionY() * (-1));
+            board.getBall().setLastComponentHit(3);
         }
-        if (gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())) {
+        if (gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox()) && !(board.getBall().getLastComponentHit() == 4)) {
             board.getBall().setDirectionY(board.getBall().getDirectionY() * (-1));
+            board.getBall().setLastComponentHit(4);
         }
-        if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())) {
+        if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox()) && !(board.getBall().getLastComponentHit() == 5)) {
             Score.addPointToPlayer(1);
+            board.getBall().setLastComponentHit(5);
             reset();
         }
-        if (gameComponents[0].getHitbox().intersects(gameComponents[6].getHitbox())) {
+        if (gameComponents[0].getHitbox().intersects(gameComponents[6].getHitbox()) && !(board.getBall().getLastComponentHit() == 6)) {
             Score.addPointToPlayer(2);
+            board.getBall().setLastComponentHit(6);
             reset();
         }
     }
