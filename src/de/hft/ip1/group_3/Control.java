@@ -78,7 +78,7 @@ public class Control {
         if (mov.isSPressed()) {
             board.getPlayerBar1().moveDown();
         }
-        collision(board.getGameComponents());
+        //collision(board.getGameComponents());
 
         if (board.isValidHitboxPosition(board.getPlayerBar1().getHitbox()) == GameBoard.Validity.tooLow) {
             board.getPlayerBar1().move(new Position(Scaling.playerBarPos1X, Scaling.maxValid - Scaling.playerBarRecY));
