@@ -86,9 +86,6 @@ public class Control {
             board.getPlayerBar2().move(new Position(Scaling.playerBarPos2X, Scaling.minValid));
         }
 
-        playsc.setScore1(playsc.getScore1() + 500);
-        playsc.setScore2(playsc.getScore2() + 500);
-
         board.draw();
     }
 
@@ -121,6 +118,9 @@ public class Control {
         board.getPlayerBar1().hitbox.setLocation(Scaling.playerBarPos1X, Scaling.playerBarPos1Y);
         board.getPlayerBar2().pos.setY(Scaling.playerBarPos2Y);
         board.getPlayerBar2().hitbox.setLocation(Scaling.playerBarPos2X, Scaling.playerBarPos2Y);
+
+        playsc.setScore1(Score.getPointsOfPlayer(1));
+        playsc.setScore2(Score.getPointsOfPlayer(2));
         board.draw();
         try {
             Thread.sleep(1000);
