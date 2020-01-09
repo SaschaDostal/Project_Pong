@@ -10,8 +10,8 @@ public class Ball extends GameComponent {
 
 
     private float speed;
-    private int directionX = 3;
-    private int directionY = 3;
+    private int directionX = (int)(((Math.random()*2)==0)?-5:5);
+    private int directionY = (int)(Math.random()*21) - 10;
     
     public Ball(int id, Position pos, boolean visible, Rectangle hitbox, float speed) {
         super(id, pos, visible, hitbox);

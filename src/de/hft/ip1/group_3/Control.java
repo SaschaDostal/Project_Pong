@@ -115,7 +115,8 @@ public class Control {
         } catch (InterruptedException e) {
             e.printStackTrace();   
         }
-        
+        board.getBall().setDirectionY((int)(Math.random()*21) - 10);
+        board.getBall().setDirectionX(((int)(Math.random()*2)==0)?-5:5);
         board.getBall().setSpeed(1);
     }
 
