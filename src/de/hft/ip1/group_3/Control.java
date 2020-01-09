@@ -7,13 +7,15 @@ public class Control {
 
     private GameWindow window;
     private Player[] players = new Player[2];
-    private Wall[] walls = new Wall[2];
+    private Wall[] walls = new Wall[4];
     private Ball ball = null;
     private GameBoard board = null;
     private Movement mov;
+    ScoringSystem Score;
 
     public static void main(String[] args) {
         Control me = new Control();
+        me.Score = new ScoringSystem(2);
 
         me.ball = new Ball(1, new Position(Scaling.ballPosX, Scaling.ballPosY), true,
                 new Rectangle(Scaling.ballRecX, Scaling.ballRecY), 1);
@@ -25,8 +27,12 @@ public class Control {
                 new Rectangle(Scaling.wallRecX, Scaling.wallRecY));
         me.walls[1] = new Wall(1, new Position(Scaling.wallPos2X, Scaling.wallPos2Y), true,
                 new Rectangle(Scaling.wallRecX, Scaling.wallRecY));
+        me.walls[2] = new Wall(2, new Position(Scaling.wallPos3X, Scaling.wallPos3Y), true,
+                new Rectangle(Scaling.wallRec1X, Scaling.wallRec1Y));
+        me.walls[3] = new Wall(3, new Position(Scaling.wallPos4X, Scaling.wallPos4Y), true,
+                new Rectangle(Scaling.wallRec1X, Scaling.wallRec1Y));
         me.board = new GameBoard(new GameComponent[] { me.ball, me.players[0].getBar(), me.players[1].getBar(),
-                me.walls[0], me.walls[1] });
+                me.walls[0], me.walls[1], me.walls[2], me.walls[3]});
 
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -69,12 +75,21 @@ public class Control {
     }
     
     private void collision( GameComponent[] gameComponents ) {
-        System.out.println(gameComponents[0].getX());
+        
+        
+        
         if ( gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox()) || gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())) {
             board.getBall().setDirectionX( board.getBall().getDirectionX() * (-1));
+            board.getBall().setSpeed(board.getBall().getSpeed()*1.1);
         }
         if ( gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox()) || gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())) {
             board.getBall().setDirectionY( board.getBall().getDirectionY() * (-1));
+        }
+        if ( gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())) {
+            Score.addPointToPlayer(1);
+        }
+        if ( gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())){
+            Score.addPointToPlayer(2);  
         }
     }
 
