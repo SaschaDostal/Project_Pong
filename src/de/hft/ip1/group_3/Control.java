@@ -67,10 +67,10 @@ public class Control {
         board.getBall().move();
 
         board.draw();
-
     }
 
     private void goal(Player goalingPlayer) {
         goalingPlayer.goal();
+        
     }
 }

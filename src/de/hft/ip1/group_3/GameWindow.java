@@ -32,6 +32,7 @@ public class GameWindow extends JFrame {
         setTitle("Pong");
         setMinimumSize(new Dimension(300, 300));
         setMaximumSize(new Dimension(2560, 2560));
+        setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         System.out.println(gameBoard.getPreferredSize());

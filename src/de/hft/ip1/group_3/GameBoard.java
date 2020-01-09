@@ -12,7 +12,6 @@ public class GameBoard extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private GameComponent[] gameComponents;
-    private Position[] validPositions;
 
     /**
      * Create the frame.

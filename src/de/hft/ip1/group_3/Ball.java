@@ -8,14 +8,14 @@ public class Ball extends GameComponent {
 
     private static final long serialVersionUID = 1L;
 
-    private int speed;
+    private float speed;
 
     public Ball(int id, Position pos, boolean visible, Rectangle hitbox, int speed) {
         super(id, pos, visible, hitbox);
         this.speed = speed;
     }
 
-    public int getSpeed() {
+    public float getSpeed() {
         return this.speed;
     }
 
@@ -26,7 +26,7 @@ public class Ball extends GameComponent {
     }
 
     public void move() {
-        pos.setX(pos.getX() + 1 * speed);
+        pos.setX(pos.getX() + (int) (1 * speed));
 
     }
 
