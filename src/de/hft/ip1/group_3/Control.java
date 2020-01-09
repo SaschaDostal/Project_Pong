@@ -71,7 +71,12 @@ public class Control {
     }
     
     private void collision( GameComponent[] gameComponents ) {
+        if ( gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox()) || gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())) {
         
+        }
+        if ( gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox()) || gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())) {
+            
+        }
     }
 
     private void goal(Player goalingPlayer) {
