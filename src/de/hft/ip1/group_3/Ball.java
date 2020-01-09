@@ -9,8 +9,7 @@ public class Ball extends GameComponent {
     private static final long serialVersionUID = 1L;
     private int lastComponentHit = 0;
     private float speed;
-    private int directionX = (int) (((Math.random() * 2) == 0) ? -5 : 5);
-    private int directionY = (int) (Math.random() * 21) - 10;
+    private float[] direction = randomDirections();
 
     public Ball(int id, Position pos, boolean visible, Rectangle hitbox, float speed) {
         super(id, pos, visible, hitbox);
@@ -28,29 +27,13 @@ public class Ball extends GameComponent {
     }
 
     public void move() {
-        pos.setX(pos.getX() + directionX);
-        pos.setY(pos.getY() + directionY);
+        pos.setX(pos.getX() + 5*direction[0]);
+        pos.setY(pos.getY() + 5*direction[1]);
         this.hitbox.setLocation(pos.getX(), pos.getY());
     }
 
     public void setSpeed(double d) {
         this.speed = (float) d;
-    }
-
-    public int getDirectionX() {
-        return directionX;
-    }
-
-    public int getDirectionY() {
-        return directionY;
-    }
-
-    public void setDirectionX(int directionX) {
-        this.directionX = directionX;
-    }
-
-    public void setDirectionY(int directionY) {
-        this.directionY = directionY;
     }
 
     public int getLastComponentHit() {
@@ -59,5 +42,32 @@ public class Ball extends GameComponent {
 
     public void setLastComponentHit(int lastComponentHit) {
         this.lastComponentHit = lastComponentHit;
+    }
+    
+    public void setDirection( float[] dir) {
+        this.direction = dir;
+    }
+    
+    public float[] getDirection() {
+        return this.direction;
+    }
+    
+    public float[] randomDirections() {
+        float[] dir = new float[2];
+        dir[0] = (float) (Math.random() * 0.6 + 0.2);
+        dir[1] = (float) (Math.sqrt(1.0 - dir[0]*dir[0]));
+        
+        int quadrant = (int) (Math.random() * 4);
+        if (quadrant == 0) {
+            dir[0] = -dir[0];
+        }
+        if (quadrant == 1) {
+            dir[0] = -dir[0];
+            dir[1] = -dir[1];
+        }
+        if (quadrant == 2) {
+            dir[1] = -dir[1];
+        }
+        return dir;
     }
 }
