@@ -52,16 +52,16 @@ public class Control {
 
     private void step() {
         if (mov.isDownPressed()) {
-            board.getPlayerBar1().moveDown();
+            board.getPlayerBar2().moveDown();
         }
         if (mov.isUpPressed()) {
-            board.getPlayerBar1().moveUp();
-        }
-        if (mov.isWPressed()) {
             board.getPlayerBar2().moveUp();
         }
+        if (mov.isWPressed()) {
+            board.getPlayerBar1().moveUp();
+        }
         if (mov.isSPressed()) {
-            board.getPlayerBar2().moveDown();
+            board.getPlayerBar1().moveDown();
         }
 
         board.getBall().move();
