@@ -71,13 +71,20 @@ public class Control {
         }
         collision(board.getGameComponents());
         board.getBall().move();
+        if (board.isValidHitboxPosition(board.getPlayerBar1().getHitbox()) == GameBoard.Validity.tooLow) {
+            board.getPlayerBar1().move(new Position(Scaling.playerBarPos1X, Scaling.maxValid-Scaling.playerBarRecY));
+        } else if (board.isValidHitboxPosition(board.getPlayerBar1().getHitbox()) == GameBoard.Validity.tooHigh) {
+            board.getPlayerBar1().move(new Position(Scaling.playerBarPos1X, Scaling.minValid));
+        }
+        if (board.isValidHitboxPosition(board.getPlayerBar2().getHitbox()) == GameBoard.Validity.tooLow) {
+            board.getPlayerBar2().move(new Position(Scaling.playerBarPos2X, Scaling.maxValid-Scaling.playerBarRecY));
+        } else if (board.isValidHitboxPosition(board.getPlayerBar2().getHitbox()) == GameBoard.Validity.tooHigh) {
+            board.getPlayerBar2().move(new Position(Scaling.playerBarPos2X, Scaling.minValid));
+        }
         board.draw();
     }
     
     private void collision( GameComponent[] gameComponents ) {
-        
-        
-        
         if ( gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox()) || gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())) {
             board.getBall().setDirectionX( board.getBall().getDirectionX() * (-1));
             board.getBall().setSpeed(board.getBall().getSpeed()*1.1);
@@ -95,5 +102,6 @@ public class Control {
 
     private void goal(Player goalingPlayer) {
         goalingPlayer.goal();
+        
     }
 }

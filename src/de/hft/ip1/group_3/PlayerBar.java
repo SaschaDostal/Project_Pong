@@ -8,14 +8,14 @@ public class PlayerBar extends GameComponent {
 
     private static final long serialVersionUID = 1L;
 
-    private int speed;
+    private float speed;
 
     public PlayerBar(int id, Position pos, boolean visible, Rectangle hitbox, int speed) {
         super(id, pos, visible, hitbox);
         this.speed = speed;
     }
 
-    public int getSpeed() {
+    public float getSpeed() {
         return this.speed;
     }
 
@@ -26,15 +26,13 @@ public class PlayerBar extends GameComponent {
     }
 
     public void moveUp() {
-        pos.setY(pos.getY() - 10 * 1);
+        pos.setY(pos.getY() - (int) (10 * speed));
         this.hitbox.setLocation(pos.getX(), pos.getY());
-
     }
 
     public void moveDown() {
-        pos.setY(pos.getY() + 10 * 1);
+        pos.setY(pos.getY() + (int) (10 * speed));
         this.hitbox.setLocation(pos.getX(), pos.getY());
-
     }
 
 }
