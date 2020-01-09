@@ -10,8 +10,8 @@ public class Ball extends GameComponent {
 
 
     private float speed;
-    private int directionX = 0;
-    private int directionY = 5;
+    private int directionX = 3;
+    private int directionY = 3;
     
     public Ball(int id, Position pos, boolean visible, Rectangle hitbox, float speed) {
         super(id, pos, visible, hitbox);
@@ -26,7 +26,7 @@ public class Ball extends GameComponent {
     @Override
     public void paintComponent(Graphics g) {
         g.setColor(Color.RED);
-        g.fillOval(pos.getX(), pos.getY(), 20, 20);
+        g.fillOval(pos.getX(), pos.getY(), hitbox.width, hitbox.height);
     }
 
     public void move() {
