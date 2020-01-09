@@ -27,10 +27,12 @@ public class PlayerBar extends GameComponent {
 
     public void moveUp() {
         pos.setY(pos.getY() - (int) (10 * speed));
+        this.hitbox.setLocation(pos.getX(), pos.getY());
     }
 
     public void moveDown() {
         pos.setY(pos.getY() + (int) (10 * speed));
+        this.hitbox.setLocation(pos.getX(), pos.getY());
     }
 
 }

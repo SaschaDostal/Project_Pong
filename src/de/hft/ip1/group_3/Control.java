@@ -52,21 +52,39 @@ public class Control {
 
     private void step() {
         if (mov.isDownPressed()) {
-            board.getPlayerBar1().moveDown();
-        }
-        if (mov.isUpPressed()) {
-            board.getPlayerBar1().moveUp();
-        }
-        if (mov.isWPressed()) {
-            board.getPlayerBar2().moveUp();
-        }
-        if (mov.isSPressed()) {
             board.getPlayerBar2().moveDown();
         }
-
+        if (mov.isUpPressed()) {
+            board.getPlayerBar2().moveUp();
+        }
+        if (mov.isWPressed()) {
+            board.getPlayerBar1().moveUp();
+        }
+        if (mov.isSPressed()) {
+            board.getPlayerBar1().moveDown();
+        }
+        collision(board.getGameComponents());
         board.getBall().move();
-
+        if (board.isValidHitboxPosition(board.getPlayerBar1().getHitbox()) == GameBoard.Validity.tooLow) {
+            board.getPlayerBar1().move(new Position(Scaling.playerBarPos1X, Scaling.maxValid-Scaling.playerBarRecY));
+        } else if (board.isValidHitboxPosition(board.getPlayerBar1().getHitbox()) == GameBoard.Validity.tooHigh) {
+            board.getPlayerBar1().move(new Position(Scaling.playerBarPos1X, Scaling.minValid));
+        }
+        if (board.isValidHitboxPosition(board.getPlayerBar2().getHitbox()) == GameBoard.Validity.tooLow) {
+            board.getPlayerBar2().move(new Position(Scaling.playerBarPos2X, Scaling.maxValid-Scaling.playerBarRecY));
+        } else if (board.isValidHitboxPosition(board.getPlayerBar2().getHitbox()) == GameBoard.Validity.tooHigh) {
+            board.getPlayerBar2().move(new Position(Scaling.playerBarPos2X, Scaling.minValid));
+        }
         board.draw();
+    }
+    
+    private void collision( GameComponent[] gameComponents ) {
+        if ( gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox()) || gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())) {
+            board.getBall().setDirectionX( board.getBall().getDirectionX() * (-1));
+        }
+        if ( gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox()) || gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())) {
+            board.getBall().setDirectionY( board.getBall().getDirectionY() * (-1));
+        }
     }
 
     private void goal(Player goalingPlayer) {

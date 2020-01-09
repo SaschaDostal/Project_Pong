@@ -13,12 +13,14 @@ public abstract class GameComponent extends JComponent {
     protected Position pos;
     protected boolean visible;
     protected Rectangle hitbox;
+    
 
     public GameComponent(int id, Position pos, boolean visible, Rectangle hitbox) {
         this.id = id;
         this.pos = pos;
         this.visible = visible;
         this.hitbox = hitbox;
+        this.hitbox.setLocation(pos.getX(), pos.getY());
     }
 
     public int getId() {
@@ -35,6 +37,10 @@ public abstract class GameComponent extends JComponent {
 
     public void move(Position newPos) {
         this.pos = newPos;
+    }
+    
+    public Rectangle getHitbox() {
+        return this.hitbox;
     }
 
     @Override

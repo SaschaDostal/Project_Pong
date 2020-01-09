@@ -9,7 +9,9 @@ public class Ball extends GameComponent {
     private static final long serialVersionUID = 1L;
 
     private float speed;
-
+    private int directionX = 5;
+    private int directionY = 1;
+    
     public Ball(int id, Position pos, boolean visible, Rectangle hitbox, int speed) {
         super(id, pos, visible, hitbox);
         this.speed = speed;
@@ -26,8 +28,24 @@ public class Ball extends GameComponent {
     }
 
     public void move() {
-        pos.setX(pos.getX() + (int) (1 * speed));
-
+        pos.setX(pos.getX() + (int) (directionX * speed));
+        pos.setY(pos.getY() + (int) (directionY * speed));
+        this.hitbox.setLocation(pos.getX(), pos.getY());
     }
 
+    public int getDirectionX() {
+        return directionX;
+    }
+
+    public int getDirectionY() {
+        return directionY;
+    }
+
+    public void setDirectionX(int directionX) {
+        this.directionX = directionX;
+    }
+
+    public void setDirectionY(int directionY) {
+        this.directionY = directionY;
+    }
 }
