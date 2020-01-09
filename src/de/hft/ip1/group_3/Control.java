@@ -23,9 +23,9 @@ public class Control {
 
         me.ball = new Ball(1, new Position(Scaling.ballPosX, Scaling.ballPosY), true,
                 new Rectangle(Scaling.ballRecX, Scaling.ballRecY), 1);
-        me.players[0] = new Player(0, 0, new PlayerBar(0, new Position(Scaling.playerBarPos1X, Scaling.playerBarPos1Y),
+        me.players[0] = new Player(0, new PlayerBar(0, new Position(Scaling.playerBarPos1X, Scaling.playerBarPos1Y),
                 true, new Rectangle(Scaling.playerBarRecX, Scaling.playerBarRecY), 10));
-        me.players[1] = new Player(1, 0, new PlayerBar(1, new Position(Scaling.playerBarPos2X, Scaling.playerBarPos2Y),
+        me.players[1] = new Player(1, new PlayerBar(1, new Position(Scaling.playerBarPos2X, Scaling.playerBarPos2Y),
                 true, new Rectangle(Scaling.playerBarRecX, (Scaling.playerBarRecY)), 10));
         me.walls[0] = new Wall(0, new Position(Scaling.wallPos1X, Scaling.wallPos1Y), true,
                 new Rectangle(Scaling.wallRecX, Scaling.wallRecY));
@@ -130,10 +130,5 @@ public class Control {
         board.getBall().setDirectionY((int) (Math.random() * 21) - 10);
         board.getBall().setDirectionX(((int) (Math.random() * 2) == 0) ? -5 : 5);
         board.getBall().setSpeed(1);
-    }
-
-    private void goal(Player goalingPlayer) {
-        goalingPlayer.goal();
-
     }
 }
