@@ -72,6 +72,10 @@ public class Control {
     
     private void collision( GameComponent[] gameComponents ) {
         
+        
+        
+        
+        
     }
 
     private void goal(Player goalingPlayer) {
