@@ -27,8 +27,8 @@ public class Ball extends GameComponent {
     }
 
     public void move() {
-        pos.setX(pos.getX() + 5*direction[0]);
-        pos.setY(pos.getY() + 5*direction[1]);
+        pos.setX(pos.getX() + 5 * Scaling.sizeX/1000 * direction[0]);
+        pos.setY(pos.getY() + 5 * Scaling.sizeX/1000 * direction[1]);
         this.hitbox.setLocation(pos.getX(), pos.getY());
     }
 
@@ -54,7 +54,7 @@ public class Ball extends GameComponent {
     
     public float[] randomDirections() {
         float[] dir = new float[2];
-        dir[0] = (float) (Math.random() * 0.6 + 0.2);
+        dir[0] = (float) (Math.random() * 0.4 + 0.4);
         dir[1] = (float) (Math.sqrt(1.0 - dir[0]*dir[0]));
         
         int quadrant = (int) (Math.random() * 4);
