@@ -24,4 +24,7 @@ public class Scaling {
     public static int ballRecY = sizeY / 100;
     public static int ballPosX = sizeX / 2 - ballRecX / 2;
     public static int ballPosY = sizeY / 2 - ballRecY / 2;
+
+    public static int maxValid = Scaling.sizeY - Scaling.wallRecY;
+    public static int minValid = Scaling.wallRecY;
 }

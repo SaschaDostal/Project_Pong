@@ -27,7 +27,8 @@ public class PlayerBar extends GameComponent {
 
     public void moveUp() {
         pos.setY(pos.getY() - 10 * 1);
-
+        
+       
     }
 
     public void moveDown() {

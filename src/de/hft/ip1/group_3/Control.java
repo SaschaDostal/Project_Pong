@@ -37,7 +37,7 @@ public class Control {
         });
 
         me.mov = new Movement();
-       
+
         while (true) {
             try {
                 Thread.sleep(50);
@@ -66,6 +66,11 @@ public class Control {
 
         board.getBall().move();
 
+        if (board.isValidHitboxPosition(board.getPlayerBar1().getHitbox()) == GameBoard.Validity.tooLow) {
+            board.getPlayerBar1().move(new Position(Scaling.playerBarPos1X, Scaling.maxValid));
+        } else if (board.isValidHitboxPosition(board.getPlayerBar1().getHitbox()) == GameBoard.Validity.tooHigh) {
+            board.getPlayerBar1().move(new Position(Scaling.playerBarPos1X, Scaling.minValid));
+        }
         board.draw();
 
     }

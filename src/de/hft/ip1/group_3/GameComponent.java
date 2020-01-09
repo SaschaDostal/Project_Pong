@@ -36,6 +36,10 @@ public abstract class GameComponent extends JComponent {
     public void move(Position newPos) {
         this.pos = newPos;
     }
+    
+    public Rectangle getHitbox() {
+        return this.hitbox;
+    }
 
     @Override
     abstract public void paintComponent(Graphics g);
