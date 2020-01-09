@@ -63,19 +63,18 @@ public class Control {
         if (mov.isSPressed()) {
             board.getPlayerBar1().moveDown();
         }
-
+        collision(board.getGameComponents());
         board.getBall().move();
-
         board.draw();
-
     }
     
     private void collision( GameComponent[] gameComponents ) {
+        System.out.println(gameComponents[0].getX());
         if ( gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox()) || gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())) {
-        
+            board.getBall().setDirectionX( board.getBall().getDirectionX() * (-1));
         }
         if ( gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox()) || gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())) {
-            
+            board.getBall().setDirectionY( board.getBall().getDirectionY() * (-1));
         }
     }
 
