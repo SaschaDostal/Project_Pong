@@ -1,8 +1,11 @@
 package de.hft.ip1.group_3;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Stroke;
 import java.util.NoSuchElementException;
+import java.awt.BasicStroke;
 
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -38,6 +41,11 @@ public class GameBoard extends JPanel {
 
         graphics.setColor(Color.WHITE);
         this.setBackground(Color.BLACK);
+        
+        Stroke dashed = new BasicStroke(5, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 0, new float[]{Scaling.sizeY/50}, 0);
+        ((Graphics2D)graphics).setStroke(dashed);
+        graphics.drawLine(Scaling.sizeX/2, 0 + Scaling.wallRecY, Scaling.sizeX/2, Scaling.sizeY - Scaling.wallRecY);
+        
         for (GameComponent elem : gameComponents) {
             elem.paintComponent(graphics);
         }

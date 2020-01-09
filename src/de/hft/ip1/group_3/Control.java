@@ -79,7 +79,6 @@ public class Control {
     }
     
     private void collision( GameComponent[] gameComponents ) {
-        System.out.println(gameComponents[0].getX());
         if ( gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox()) || gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())) {
             board.getBall().setDirectionX( board.getBall().getDirectionX() * (-1));
         }
