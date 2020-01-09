@@ -30,7 +30,7 @@ public class GameWindow extends JFrame {
      */
     private void initialize() {
         setTitle("Pong");
-        setMinimumSize(new Dimension(300, 300));
+        setMinimumSize(new Dimension(Scaling.sizeX, Scaling.sizeY));
         setMaximumSize(new Dimension(2560, 2560));
         setResizable(false);
         setLocationRelativeTo(null);
