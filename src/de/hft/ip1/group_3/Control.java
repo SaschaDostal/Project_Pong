@@ -19,14 +19,14 @@ public class Control {
         Control me = new Control();
         me.Score = new ScoringSystem(2);
 
-        me.playsc = new PlayerScore(10, new Position(0, 0), true, new Rectangle(0,0));
+        me.playsc = new PlayerScore(10, new Position(0, 0), true, new Rectangle(0, 0));
 
         me.ball = new Ball(1, new Position(Scaling.ballPosX, Scaling.ballPosY), true,
                 new Rectangle(Scaling.ballRecX, Scaling.ballRecY), 1);
         me.players[0] = new Player(0, 0, new PlayerBar(0, new Position(Scaling.playerBarPos1X, Scaling.playerBarPos1Y),
                 true, new Rectangle(Scaling.playerBarRecX, Scaling.playerBarRecY), 10));
         me.players[1] = new Player(1, 0, new PlayerBar(1, new Position(Scaling.playerBarPos2X, Scaling.playerBarPos2Y),
-                true, new Rectangle(Scaling.playerBarRecX, Scaling.playerBarRecY), 10));
+                true, new Rectangle(Scaling.playerBarRecX, (Scaling.playerBarRecY)), 10));
         me.walls[0] = new Wall(0, new Position(Scaling.wallPos1X, Scaling.wallPos1Y), true,
                 new Rectangle(Scaling.wallRecX, Scaling.wallRecY));
         me.walls[1] = new Wall(1, new Position(Scaling.wallPos2X, Scaling.wallPos2Y), true,
@@ -36,7 +36,7 @@ public class Control {
         me.walls[3] = new Wall(3, new Position(Scaling.wallPos4X, Scaling.wallPos4Y), true,
                 new Rectangle(Scaling.wallRec1X, Scaling.wallRec1Y));
         me.board = new GameBoard(new GameComponent[] { me.ball, me.players[0].getBar(), me.players[1].getBar(),
-                me.walls[0], me.walls[1], me.walls[2], me.walls[3], me.playsc});
+                me.walls[0], me.walls[1], me.walls[2], me.walls[3], me.playsc });
 
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -50,7 +50,7 @@ public class Control {
 
         while (true) {
             try {
-                Thread.sleep(50);
+                Thread.sleep(25);
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 break;
@@ -85,11 +85,10 @@ public class Control {
         } else if (board.isValidHitboxPosition(board.getPlayerBar2().getHitbox()) == GameBoard.Validity.tooHigh) {
             board.getPlayerBar2().move(new Position(Scaling.playerBarPos2X, Scaling.minValid));
         }
-        
-        playsc.setScore1(playsc.getScore1()+500);
-        playsc.setScore2(playsc.getScore2()+500);
 
-        
+        playsc.setScore1(playsc.getScore1() + 500);
+        playsc.setScore2(playsc.getScore2() + 500);
+
         board.draw();
     }
 
@@ -103,12 +102,34 @@ public class Control {
                 || gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())) {
             board.getBall().setDirectionY(board.getBall().getDirectionY() * (-1));
         }
-        if (gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())) {
-            Score.addPointToPlayer(1);
-        }
         if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())) {
-            Score.addPointToPlayer(2);
+            Score.addPointToPlayer(1);
+            reset();
         }
+        if (gameComponents[0].getHitbox().intersects(gameComponents[6].getHitbox())) {
+            Score.addPointToPlayer(2);
+            reset();
+        }
+    }
+
+    public void reset() {
+        board.getBall().pos.setX(Scaling.sizeX / 2 - Scaling.ballRecX / 2);
+        board.getBall().pos.setY(Scaling.sizeY / 2 - Scaling.ballRecY / 2);
+        board.getBall().hitbox.setLocation(board.getBall().pos.getX(), board.getBall().pos.getY());
+        board.getBall().setSpeed(0);
+        board.getPlayerBar1().pos.setY(Scaling.playerBarPos1Y);
+        board.getPlayerBar1().hitbox.setLocation(Scaling.playerBarPos1X, Scaling.playerBarPos1Y);
+        board.getPlayerBar2().pos.setY(Scaling.playerBarPos2Y);
+        board.getPlayerBar2().hitbox.setLocation(Scaling.playerBarPos2X, Scaling.playerBarPos2Y);
+        board.draw();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        board.getBall().setDirectionY((int) (Math.random() * 21) - 10);
+        board.getBall().setDirectionX(((int) (Math.random() * 2) == 0) ? -5 : 5);
+        board.getBall().setSpeed(1);
     }
 
     private void goal(Player goalingPlayer) {

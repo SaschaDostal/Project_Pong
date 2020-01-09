@@ -71,5 +71,7 @@ class Position {
     public void setY(double y) {
         this.y = (int) y;
     }
+    
+
 
 }

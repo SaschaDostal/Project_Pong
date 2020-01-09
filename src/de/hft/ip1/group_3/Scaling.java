@@ -29,8 +29,8 @@ public class Scaling {
     public static int wallPos4X = sizeX - wallRec1X;
     public static int wallPos4Y = 0;  
     
-    public static int ballRecX = sizeY / 100;
-    public static int ballRecY = sizeY / 100;
+    public static int ballRecX = sizeY / 25;
+    public static int ballRecY = sizeY / 25;
     public static int ballPosX = sizeX / 2 - ballRecX / 2;
     public static int ballPosY = sizeY / 2 - ballRecY / 2;
   
