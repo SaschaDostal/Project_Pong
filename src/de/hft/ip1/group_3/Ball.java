@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 public class Ball extends GameComponent {
 
     private static final long serialVersionUID = 1L;
-
+    private int lastComponentHit = 0;
     private float speed;
     private int directionX = (int) (((Math.random() * 2) == 0) ? -5 : 5);
     private int directionY = (int) (Math.random() * 21) - 10;
@@ -51,5 +51,13 @@ public class Ball extends GameComponent {
 
     public void setDirectionY(int directionY) {
         this.directionY = directionY;
+    }
+
+    public int getLastComponentHit() {
+        return lastComponentHit;
+    }
+
+    public void setLastComponentHit(int lastComponentHit) {
+        this.lastComponentHit = lastComponentHit;
     }
 }

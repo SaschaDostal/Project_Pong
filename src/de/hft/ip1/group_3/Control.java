@@ -95,13 +95,18 @@ public class Control {
     }
 
     private void collision(GameComponent[] gameComponents) {
-        if (gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox())
-                || gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())) {
+        if (gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox())) {
             board.getBall().setDirectionX(board.getBall().getDirectionX() * (-1));
             board.getBall().setSpeed(board.getBall().getSpeed() * 1.1);
         }
-        if (gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox())
-                || gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())) {
+        if (gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())) {
+            board.getBall().setDirectionX(board.getBall().getDirectionX() * (-1));
+            board.getBall().setSpeed(board.getBall().getSpeed() * 1.1);
+        }
+        if (gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox())) {
+            board.getBall().setDirectionY(board.getBall().getDirectionY() * (-1));
+        }
+        if (gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())) {
             board.getBall().setDirectionY(board.getBall().getDirectionY() * (-1));
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())) {
