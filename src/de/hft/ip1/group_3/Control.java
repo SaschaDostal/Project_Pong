@@ -22,7 +22,7 @@ public class Control {
         me.players[0] = new Player(0, 0, new PlayerBar(0, new Position(Scaling.playerBarPos1X, Scaling.playerBarPos1Y),
                 true, new Rectangle(Scaling.playerBarRecX, Scaling.playerBarRecY), 10));
         me.players[1] = new Player(1, 0, new PlayerBar(1, new Position(Scaling.playerBarPos2X, Scaling.playerBarPos2Y),
-                true, new Rectangle(Scaling.playerBarRecX, Scaling.playerBarRecY), 10));
+                true, new Rectangle(Scaling.playerBarRecX, (Scaling.playerBarRecY)), 10));
         me.walls[0] = new Wall(0, new Position(Scaling.wallPos1X, Scaling.wallPos1Y), true,
                 new Rectangle(Scaling.wallRecX, Scaling.wallRecY));
         me.walls[1] = new Wall(1, new Position(Scaling.wallPos2X, Scaling.wallPos2Y), true,
@@ -92,11 +92,11 @@ public class Control {
         if ( gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox()) || gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())) {
             board.getBall().setDirectionY( board.getBall().getDirectionY() * (-1));
         }
-        if ( gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())) {
-            Score.addPointToPlayer(1);
+        if ( gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())) {
+            Score.addPointToPlayer(1); board.getBall().reset();
         }
-        if ( gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())){
-            Score.addPointToPlayer(2);  
+        if ( gameComponents[0].getHitbox().intersects(gameComponents[6].getHitbox())){
+            Score.addPointToPlayer(2); board.getBall().reset(); 
         }
     }
 
