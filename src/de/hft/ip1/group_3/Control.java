@@ -69,6 +69,10 @@ public class Control {
         board.draw();
 
     }
+    
+    private void collision( GameComponent[] gameComponents ) {
+        
+    }
 
     private void goal(Player goalingPlayer) {
         goalingPlayer.goal();
