@@ -40,21 +40,6 @@ public class Control {
                 new Rectangle(Scaling.wallRec1X, Scaling.wallRec1Y));
         me.board = new GameBoard(new GameComponent[] { me.ball, me.players[0].getBar(), me.players[1].getBar(),
                 me.walls[0], me.walls[1], me.goals[0], me.goals[1], me.playsc });
-
-        try {
-            EventQueue.invokeAndWait(new Runnable() {
-                @Override
-                public void run() {
-                    me.startWindow = new StartWindow();
-                    me.startWindow.setVisible(true);
-                }
-            });
-        } catch (InvocationTargetException | InterruptedException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-        
-        while (me.startWindow.isEnabled());
         
         EventQueue.invokeLater(new Runnable() {
 
