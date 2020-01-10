@@ -27,8 +27,8 @@ public class Ball extends GameComponent {
     }
 
     public void move() {
-        pos.setX(pos.getX() + 5 * Scaling.sizeX/1000 * direction[0]);
-        pos.setY(pos.getY() + 5 * Scaling.sizeX/1000 * direction[1]);
+        pos.setX(pos.getX() + 4 * Scaling.sizeX/1000 * direction[0]);
+        pos.setY(pos.getY() + 4 * Scaling.sizeX/1000 * direction[1]);
         this.hitbox.setLocation(pos.getX(), pos.getY());
     }
 
