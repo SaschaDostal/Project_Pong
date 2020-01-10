@@ -28,6 +28,7 @@ import javax.swing.BoxLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Component;
+import javax.swing.JSlider;
 
 public class StartWindow extends JFrame {
 
@@ -145,16 +146,11 @@ public class StartWindow extends JFrame {
         lblNewLabel_2.setFont(new Font("MS PGothic", Font.BOLD, 18));
         lblNewLabel_2.setForeground(Color.WHITE);
         panel_5.add(lblNewLabel_2);
-
-        JComboBox comboBox = new JComboBox();
-        comboBox.setFont(new Font("MS PGothic", Font.BOLD, 16));
-        comboBox.setBackground(Color.LIGHT_GRAY);
-        comboBox.setForeground(Color.BLACK);
-        panel_5.add(comboBox);
-
-        comboBox.addItem("medium");
-        comboBox.addItem("small");
-        comboBox.addItem("large");
+        
+        JSlider slider = new JSlider();
+        slider.setMaximum(1250);
+        slider.setMinimum(500);
+        panel_5.add(slider);
 
         JLabel label_2 = new JLabel("");
         panel_5.add(label_2);

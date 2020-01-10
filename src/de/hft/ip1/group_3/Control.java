@@ -7,7 +7,8 @@ public class Control {
 
     private GameWindow window;
     private Player[] players = new Player[2];
-    private Wall[] walls = new Wall[4];
+    private Wall[] walls = new Wall[2];
+    private Goal[] goals = new Goal[2];
     private Ball ball = null;
     private GameBoard board = null;
     private Movement mov;
@@ -31,12 +32,12 @@ public class Control {
                 new Rectangle(Scaling.wallRecX, Scaling.wallRecY));
         me.walls[1] = new Wall(1, new Position(Scaling.wallPos2X, Scaling.wallPos2Y), true,
                 new Rectangle(Scaling.wallRecX, Scaling.wallRecY));
-        me.walls[2] = new Wall(2, new Position(Scaling.wallPos3X, Scaling.wallPos3Y), true,
+        me.goals[0] = new Goal(2, new Position(Scaling.wallPos3X, Scaling.wallPos3Y), true,
                 new Rectangle(Scaling.wallRec1X, Scaling.wallRec1Y));
-        me.walls[3] = new Wall(3, new Position(Scaling.wallPos4X, Scaling.wallPos4Y), true,
+        me.goals[1] = new Goal(3, new Position(Scaling.wallPos4X, Scaling.wallPos4Y), true,
                 new Rectangle(Scaling.wallRec1X, Scaling.wallRec1Y));
         me.board = new GameBoard(new GameComponent[] { me.ball, me.players[0].getBar(), me.players[1].getBar(),
-                me.walls[0], me.walls[1], me.walls[2], me.walls[3], me.playsc });
+                me.walls[0], me.walls[1], me.goals[0], me.goals[1], me.playsc });
 
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -61,7 +62,7 @@ public class Control {
     }
 
     private void step() {
-        for (int i = 0; i < board.getBall().getSpeed(); i++) {
+        for (float i = 0; i < board.getBall().getSpeed(); i += 0.7) {
             collision(board.getGameComponents());
             board.getBall().move();
             board.draw();
@@ -97,12 +98,12 @@ public class Control {
     private void collision(GameComponent[] gameComponents) {
         if (gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox()) && !(board.getBall().getLastComponentHit() == 1)) {
             board.getBall().setDirection(new float[] {board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1]});
-            board.getBall().setSpeed(board.getBall().getSpeed() * 1.05);
+            board.getBall().setSpeed(board.getBall().getSpeed() * 1.1);
             board.getBall().setLastComponentHit(1);
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox()) && !(board.getBall().getLastComponentHit() == 2)) {
             board.getBall().setDirection(new float[] {board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1]});
-            board.getBall().setSpeed(board.getBall().getSpeed() * 1.05);
+            board.getBall().setSpeed(board.getBall().getSpeed() * 1.1);
             board.getBall().setLastComponentHit(2);
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox()) && !(board.getBall().getLastComponentHit() == 3)) {

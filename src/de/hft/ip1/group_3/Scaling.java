@@ -6,10 +6,10 @@ public class Scaling {
 
     public static int playerBarRecX = sizeX / 75;
     public static int playerBarRecY = sizeY / 8;
-    public static int playerBarPos1X = 0 + sizeX/40;
+    public static int playerBarPos1X = 0 + sizeX/50;
     public static int playerBarPos1Y = sizeY / 2 - playerBarRecY / 2;
 
-    public static int playerBarPos2X = sizeX - sizeX/40 - playerBarRecX;
+    public static int playerBarPos2X = sizeX - sizeX/50 - playerBarRecX;
     public static int playerBarPos2Y = sizeY / 2 - playerBarRecY / 2;
 
     public static int wallRecX = sizeX;
