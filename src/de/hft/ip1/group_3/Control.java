@@ -2,10 +2,12 @@ package de.hft.ip1.group_3;
 
 import java.awt.EventQueue;
 import java.awt.Rectangle;
+import java.lang.reflect.InvocationTargetException;
 
 public class Control {
 
     private GameWindow window;
+    private StartWindow startWindow;
     private Player[] players = new Player[2];
     private Wall[] walls = new Wall[2];
     private Goal[] goals = new Goal[2];
@@ -39,7 +41,23 @@ public class Control {
         me.board = new GameBoard(new GameComponent[] { me.ball, me.players[0].getBar(), me.players[1].getBar(),
                 me.walls[0], me.walls[1], me.goals[0], me.goals[1], me.playsc });
 
+        try {
+            EventQueue.invokeAndWait(new Runnable() {
+                @Override
+                public void run() {
+                    me.startWindow = new StartWindow();
+                    me.startWindow.setVisible(true);
+                }
+            });
+        } catch (InvocationTargetException | InterruptedException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        
+        while (me.startWindow.isEnabled());
+        
         EventQueue.invokeLater(new Runnable() {
+
             @Override
             public void run() {
                 me.window = new GameWindow(me.board);
@@ -79,11 +97,13 @@ public class Control {
         if (mov.isSPressed()) {
             board.getPlayerBar1().moveDown();
         }
-        if (board.getBall().getPosition().getX() <= 0 || board.getBall().getPosition().getX() >= (Scaling.sizeX - Scaling.ballRecX) 
-                || board.getBall().getPosition().getY() <= 0 || board.getBall().getPosition().getY() >= (Scaling.sizeY - Scaling.ballRecY)) {
+        if (board.getBall().getPosition().getX() <= 0
+                || board.getBall().getPosition().getX() >= (Scaling.sizeX - Scaling.ballRecX)
+                || board.getBall().getPosition().getY() <= 0
+                || board.getBall().getPosition().getY() >= (Scaling.sizeY - Scaling.ballRecY)) {
             reset();
         }
-        //collision(board.getGameComponents());
+        // collision(board.getGameComponents());
 
         if (board.isValidHitboxPosition(board.getPlayerBar1().getHitbox()) == GameBoard.Validity.tooLow) {
             board.getPlayerBar1().move(new Position(Scaling.playerBarPos1X, Scaling.maxValid - Scaling.playerBarRecY));
@@ -100,30 +120,40 @@ public class Control {
     }
 
     private void collision(GameComponent[] gameComponents) {
-        if (gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox()) && !(board.getBall().getLastComponentHit() == 1)) {
-            board.getBall().setDirection(new float[] {board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1]});
+        if (gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox())
+                && !(board.getBall().getLastComponentHit() == 1)) {
+            board.getBall().setDirection(
+                    new float[] { board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] });
             board.getBall().setSpeed(board.getBall().getSpeed() * 1.1);
             board.getBall().setLastComponentHit(1);
         }
-        if (gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox()) && !(board.getBall().getLastComponentHit() == 2)) {
-            board.getBall().setDirection(new float[] {board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1]});
+        if (gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())
+                && !(board.getBall().getLastComponentHit() == 2)) {
+            board.getBall().setDirection(
+                    new float[] { board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] });
             board.getBall().setSpeed(board.getBall().getSpeed() * 1.1);
             board.getBall().setLastComponentHit(2);
         }
-        if (gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox()) && !(board.getBall().getLastComponentHit() == 3)) {
-            board.getBall().setDirection(new float[] {board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1)});
+        if (gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox())
+                && !(board.getBall().getLastComponentHit() == 3)) {
+            board.getBall().setDirection(
+                    new float[] { board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) });
             board.getBall().setLastComponentHit(3);
         }
-        if (gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox()) && !(board.getBall().getLastComponentHit() == 4)) {
-            board.getBall().setDirection(new float[] {board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1)});
+        if (gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())
+                && !(board.getBall().getLastComponentHit() == 4)) {
+            board.getBall().setDirection(
+                    new float[] { board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) });
             board.getBall().setLastComponentHit(4);
         }
-        if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox()) && !(board.getBall().getLastComponentHit() == 5)) {
+        if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())
+                && !(board.getBall().getLastComponentHit() == 5)) {
             Score.addPointToPlayer(1);
             board.getBall().setLastComponentHit(5);
             reset();
         }
-        if (gameComponents[0].getHitbox().intersects(gameComponents[6].getHitbox()) && !(board.getBall().getLastComponentHit() == 6)) {
+        if (gameComponents[0].getHitbox().intersects(gameComponents[6].getHitbox())
+                && !(board.getBall().getLastComponentHit() == 6)) {
             Score.addPointToPlayer(2);
             board.getBall().setLastComponentHit(6);
             reset();
