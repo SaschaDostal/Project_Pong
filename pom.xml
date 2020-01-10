@@ -41,7 +41,7 @@
         </repository>
     </repositories>
     <dependencies>
-        <!-- local jaad dependency for AACPlayer -->
+        <!-- local jaadec dependency for AACPlayer -->
         <dependency>
             <groupId>net.sourceforge.jaadec</groupId>
             <artifactId>jaad</artifactId>
