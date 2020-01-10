@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Stroke;
+import java.awt.Toolkit;
 import java.awt.BasicStroke;
 import java.util.NoSuchElementException;
 
@@ -85,6 +86,7 @@ public class GameBoard extends JPanel {
 
     public void draw() {
         this.repaint();
+        Toolkit.getDefaultToolkit().sync();
     }
 
     public enum Validity {

@@ -2,7 +2,7 @@ package de.hft.ip1.group_3;
 
 public class Scaling {
     public static int sizeX = 1000;
-    public static int sizeY = 700;
+    public static int sizeY = (int)(0.7 * sizeX);
 
     public static int playerBarRecX = sizeX / 100;
     public static int playerBarRecY = sizeY / 10;
