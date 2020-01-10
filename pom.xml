@@ -16,7 +16,7 @@
                     <target>1.8</target>
                     <archive>
                         <manifest>
-                            <mainClass>de.hft.ip1.group_3.Mylass</mainClass>
+                            <mainClass>de.hft.ip1.group_3.Control</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
