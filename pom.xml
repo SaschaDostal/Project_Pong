@@ -23,4 +23,11 @@
             </plugin>
         </plugins>
     </build>
+    <dependencies>
+        <dependency>
+            <groupId>net.sourceforge.jaad</groupId>
+            <artifactId>jaad</artifactId>
+            <version>0.8.4</version>
+        </dependency>
+    </dependencies>
 </project>
