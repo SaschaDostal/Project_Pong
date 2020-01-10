@@ -47,11 +47,12 @@ public class GameBoard extends JPanel {
         graphics.drawLine(Scaling.sizeX/2, 0 + Scaling.wallRecY, Scaling.sizeX/2, Scaling.sizeY - Scaling.wallRecY);
         
         
-        gameComponents[0].paintComponent(graphics);
+
         gameComponents[1].paintComponent(graphics);
         gameComponents[2].paintComponent(graphics);
         gameComponents[5].paintComponent(graphics);
         gameComponents[6].paintComponent(graphics);
+        gameComponents[0].paintComponent(graphics);
         gameComponents[3].paintComponent(graphics);
         gameComponents[4].paintComponent(graphics);
         gameComponents[7].paintComponent(graphics);
