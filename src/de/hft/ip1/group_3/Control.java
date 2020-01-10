@@ -79,6 +79,10 @@ public class Control {
         if (mov.isSPressed()) {
             board.getPlayerBar1().moveDown();
         }
+        if (board.getBall().getPosition().getX() <= 0 || board.getBall().getPosition().getX() >= (Scaling.sizeX - Scaling.ballRecX) 
+                || board.getBall().getPosition().getY() <= 0 || board.getBall().getPosition().getY() >= (Scaling.sizeY - Scaling.ballRecY)) {
+            reset();
+        }
         //collision(board.getGameComponents());
 
         if (board.isValidHitboxPosition(board.getPlayerBar1().getHitbox()) == GameBoard.Validity.tooLow) {
