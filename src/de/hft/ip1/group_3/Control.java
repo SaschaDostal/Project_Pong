@@ -42,6 +42,9 @@ public class Control {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                
+                
+                
                 me.window = new GameWindow(me.board);
                 me.window.addKeyListener(me.mov.getKeyListener());
             }
@@ -146,5 +149,10 @@ public class Control {
         }
         board.getBall().setDirection(board.getBall().randomDirections());
         board.getBall().setSpeed((float) 1.05);
+    }
+
+    public void Startgame(String Name2, String Name1, int sizeX) {
+        
+        
     }
 }
