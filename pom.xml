@@ -33,9 +33,17 @@
             </plugin>
         </plugins>
     </build>
+    <repositories>
+        <!-- local repository for local dependency -->
+        <repository>
+            <id>maven-repository</id>
+            <url>file:///${project.basedir}/dependency-repository/</url>
+        </repository>
+    </repositories>
     <dependencies>
+        <!-- local jaad dependency for AACPlayer -->
         <dependency>
-            <groupId>net.sourceforge.jaad</groupId>
+            <groupId>net.sourceforge.jaadec</groupId>
             <artifactId>jaad</artifactId>
             <version>0.8.4</version>
         </dependency>
