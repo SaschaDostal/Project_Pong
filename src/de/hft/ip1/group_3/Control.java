@@ -1,77 +1,55 @@
 package de.hft.ip1.group_3;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Rectangle;
-import java.lang.reflect.InvocationTargetException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Control {
+import javax.swing.Timer;
+
+public class Control implements ActionListener {
 
     private GameWindow window;
     private StartWindow startWindow;
     private Player[] players = new Player[2];
     private Wall[] walls = new Wall[2];
     private Goal[] goals = new Goal[2];
+    private String[] playerNames;
     private Ball ball = null;
     private GameBoard board = null;
     private Movement mov;
-    ScoringSystem Score;
+    private ScoringSystem Score;
     private PlayerScore playsc;
+    private Timer timer;
 
     public static void main(String[] args) {
 
         Control me = new Control();
+        me.timer = new Timer(50, me);
         me.Score = new ScoringSystem(2);
+        me.mov = new Movement();
 
-        me.playsc = new PlayerScore(10, new Position(0, 0), true, new Rectangle(0, 0));
-
-        me.ball = new Ball(1, new Position(Scaling.ballPosX, Scaling.ballPosY), true,
-                new Rectangle(Scaling.ballRecX, Scaling.ballRecY), (float) 1.05);
-        me.players[0] = new Player(0, new PlayerBar(0, new Position(Scaling.playerBarPos1X, Scaling.playerBarPos1Y),
-                true, new Rectangle(Scaling.playerBarRecX, Scaling.playerBarRecY), 10));
-        me.players[1] = new Player(1, new PlayerBar(1, new Position(Scaling.playerBarPos2X, Scaling.playerBarPos2Y),
-                true, new Rectangle(Scaling.playerBarRecX, (Scaling.playerBarRecY)), 10));
-        me.walls[0] = new Wall(0, new Position(Scaling.wallPos1X, Scaling.wallPos1Y), true,
-                new Rectangle(Scaling.wallRecX, Scaling.wallRecY));
-        me.walls[1] = new Wall(1, new Position(Scaling.wallPos2X, Scaling.wallPos2Y), true,
-                new Rectangle(Scaling.wallRecX, Scaling.wallRecY));
-        me.goals[0] = new Goal(2, new Position(Scaling.wallPos3X, Scaling.wallPos3Y), true,
-                new Rectangle(Scaling.wallRec1X, Scaling.wallRec1Y));
-        me.goals[1] = new Goal(3, new Position(Scaling.wallPos4X, Scaling.wallPos4Y), true,
-                new Rectangle(Scaling.wallRec1X, Scaling.wallRec1Y));
-        me.board = new GameBoard(new GameComponent[] { me.ball, me.players[0].getBar(), me.players[1].getBar(),
-                me.walls[0], me.walls[1], me.goals[0], me.goals[1], me.playsc });
-        
         EventQueue.invokeLater(new Runnable() {
 
             @Override
             public void run() {
-                
-                
-                
-                me.window = new GameWindow(me.board);
-                me.window.addKeyListener(me.mov.getKeyListener());
+                me.startWindow = new StartWindow(me);
+                me.startWindow.setVisible(true);
             }
         });
+    }
 
-        me.mov = new Movement();
-
-        while (true) {
-            try {
-                Thread.sleep(25);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                break;
-            }
-            me.step();
-        }
-
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        step();
     }
 
     private void step() {
         for (float i = 0; i < board.getBall().getSpeed(); i += 0.7) {
             collision(board.getGameComponents());
             board.getBall().move();
-            board.draw();
+//            board.draw();
         }
         if (mov.isDownPressed()) {
             board.getPlayerBar2().moveDown();
@@ -170,8 +148,36 @@ public class Control {
         board.getBall().setSpeed((float) 1.05);
     }
 
-    public void Startgame(String Name2, String Name1, int sizeX) {
-        
-        
+    public void Startgame(String name1, String name2, int sizeX) {
+        playerNames = new String[] { name1, name2 };
+
+        Scaling.sizeX = sizeX;
+        Scaling scale = new Scaling();
+        System.out.println(Scaling.sizeX);
+
+        playsc = new PlayerScore(10, new Position(0, 0), true, new Rectangle(0, 0));
+
+        ball = new Ball(1, new Position(Scaling.ballPosX, Scaling.ballPosY), true,
+                new Rectangle(Scaling.ballRecX, Scaling.ballRecY), (float) 1.05);
+        players[0] = new Player(0, new PlayerBar(0, new Position(Scaling.playerBarPos1X, Scaling.playerBarPos1Y), true,
+                new Rectangle(Scaling.playerBarRecX, Scaling.playerBarRecY), 10));
+        players[1] = new Player(1, new PlayerBar(1, new Position(Scaling.playerBarPos2X, Scaling.playerBarPos2Y), true,
+                new Rectangle(Scaling.playerBarRecX, (Scaling.playerBarRecY)), 10));
+        walls[0] = new Wall(0, new Position(Scaling.wallPos1X, Scaling.wallPos1Y), true,
+                new Rectangle(Scaling.wallRecX, Scaling.wallRecY));
+        walls[1] = new Wall(1, new Position(Scaling.wallPos2X, Scaling.wallPos2Y), true,
+                new Rectangle(Scaling.wallRecX, Scaling.wallRecY));
+        goals[0] = new Goal(2, new Position(Scaling.wallPos3X, Scaling.wallPos3Y), true,
+                new Rectangle(Scaling.wallRec1X, Scaling.wallRec1Y));
+        goals[1] = new Goal(3, new Position(Scaling.wallPos4X, Scaling.wallPos4Y), true,
+                new Rectangle(Scaling.wallRec1X, Scaling.wallRec1Y));
+        board = new GameBoard(new GameComponent[] { ball, players[0].getBar(), players[1].getBar(), walls[0], walls[1],
+                goals[0], goals[1], playsc });
+
+        window = new GameWindow(board);
+        window.addKeyListener(mov.getKeyListener());
+
+        timer.start();
+        window.setVisible(true);
     }
 }
