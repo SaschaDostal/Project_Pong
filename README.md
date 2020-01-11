@@ -74,4 +74,4 @@ Run->Run As->Maven install
 * **Felix Körner** - [FelixKörner](https://gitlab.rz.hft-stuttgart.de/91kofe1bif)
 * **Benjamin Taut** - [BenjaminTaut](https://gitlab.rz.hft-stuttgart.de/91tabe1bif)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://gitlab.rz.hft-stuttgart.de/IP1/WS19_20/group-3-pong/-/graphs/master) who participated in this project.
