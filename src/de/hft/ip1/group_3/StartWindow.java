@@ -148,6 +148,7 @@ public class StartWindow extends JFrame {
         JSlider slider = new JSlider();
         slider.setMaximum(1250);
         slider.setMinimum(500);
+        slider.setValue(1000);
         panel_5.add(slider);
 
         JPanel panel_6 = new JPanel();
