@@ -25,7 +25,7 @@ public class Control implements ActionListener {
     public static void main(String[] args) {
 
         Control me = new Control();
-        me.timer = new Timer(50, me);
+        me.timer = new Timer(25, me);
         me.Score = new ScoringSystem(2);
         me.mov = new Movement();
 
