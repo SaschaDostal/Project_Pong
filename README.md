@@ -56,6 +56,11 @@ cd target/
 java -jar de.hft.group-3-pong-0.0.X.jar
 ```
 
+### Alternative with IDE (eclipse)
+```
+Run->Run As->Maven install
+```
+
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
