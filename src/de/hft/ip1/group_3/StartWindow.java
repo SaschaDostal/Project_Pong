@@ -2,52 +2,41 @@ package de.hft.ip1.group_3;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
 
-import javax.swing.JSeparator;
 import javax.swing.BoxLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Component;
 import javax.swing.JSlider;
 
 public class StartWindow extends JFrame {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-    private JTextField textField;
-    private JTextField textField_1;
     private JTextField textField_3;
     private JTextField textField_2;
-    
- 
+
     public StartWindow(Control con) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         setTitle("Pong Startmenu");
         setLocationRelativeTo(null);
 
-        
         contentPane = new JPanel();
         contentPane.setBackground(Color.DARK_GRAY);
         contentPane.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -72,7 +61,7 @@ public class StartWindow extends JFrame {
         lblNewLabel.setForeground(Color.WHITE);
         lblNewLabel.setPreferredSize(new Dimension(56, 38));
         panel_3.add(lblNewLabel);
-        
+
         textField_2 = new JTextField();
         textField_2.setFont(new Font("Arial", Font.BOLD, 16));
         panel_3.add(textField_2);
@@ -112,32 +101,30 @@ public class StartWindow extends JFrame {
         panel_2.setLayout(new BorderLayout(0, 0));
 
         JButton btnStart = new JButton("Start");
-        
+
         KeyListener key = new KeyListener() {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER ) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     btnStart.doClick();
-                }                
+                }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 // TODO Auto-generated method stub
-                
+
             }
 
             @Override
             public void keyTyped(KeyEvent e) {
                 // TODO Auto-generated method stub
-                
+
             }
-            
-            
+
         };
-       
-        
+
         btnStart.setFont(new Font("MS PGothic", Font.BOLD, 20));
         btnStart.setBackground(Color.WHITE);
         panel_2.add(btnStart, BorderLayout.SOUTH);
@@ -157,22 +144,22 @@ public class StartWindow extends JFrame {
         lblNewLabel_2.setFont(new Font("MS PGothic", Font.BOLD, 18));
         lblNewLabel_2.setForeground(Color.WHITE);
         panel_5.add(lblNewLabel_2);
-        
+
         JSlider slider = new JSlider();
         slider.setMaximum(1250);
         slider.setMinimum(500);
         panel_5.add(slider);
-        
+
         JPanel panel_6 = new JPanel();
         panel_6.setBackground(Color.DARK_GRAY);
         panel_5.add(panel_6);
         panel_6.setLayout(new BorderLayout(0, 0));
-        
+
         JLabel lblNewLabel_4 = new JLabel("small");
         lblNewLabel_4.setBackground(Color.DARK_GRAY);
         lblNewLabel_4.setForeground(Color.WHITE);
         panel_6.add(lblNewLabel_4, BorderLayout.WEST);
-        
+
         JLabel lblLarge = new JLabel("large");
         lblLarge.setForeground(Color.WHITE);
         panel_6.add(lblLarge, BorderLayout.EAST);
@@ -193,20 +180,16 @@ public class StartWindow extends JFrame {
         textField_2.addKeyListener(key);
         textField_3.addKeyListener(key);
         slider.addKeyListener(key);
-        
+
         btnStart.addActionListener(new ActionListener() {
-            
+
             public void actionPerformed(ActionEvent e) {
-                
-               con.Startgame(textField_3.getText(), textField_2.getText(), slider.getValue()); 
-               
+
+                con.Startgame(textField_3.getText(), textField_2.getText(), slider.getValue());
+
                 dispose();
-                
             }
         });
-        
-       while(isVisible()); 
     }
-
 
 }
