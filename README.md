@@ -4,7 +4,8 @@ Group-3 version of Pong
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](##Deployment) for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+See [deployment](# Deployment) for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
@@ -61,9 +62,9 @@ java -jar de.hft.group-3-pong-0.0.X.jar
 
 ## Authors
 
+* **Sascha Dostal** - [SaschaDostal](https://gitlab.rz.hft-stuttgart.de/91dosa1bif)
+* **Alexander Hötzel** - [AlexanderHötzel](https://gitlab.rz.hft-stuttgart.de/91hoal1bif)
 * **Felix Körner** - [FelixKörner](https://gitlab.rz.hft-stuttgart.de/91kofe1bif)
-* **Felix Körner** - [FelixKörner](https://gitlab.rz.hft-stuttgart.de/91kofe1bif)
-* **Felix Körner** - [FelixKörner](https://gitlab.rz.hft-stuttgart.de/91kofe1bif)
-* **Felix Körner** - [FelixKörner](https://gitlab.rz.hft-stuttgart.de/91kofe1bif)
+* **Benjamin Taut** - [BenjaminTaut](https://gitlab.rz.hft-stuttgart.de/91tabe1bif)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
