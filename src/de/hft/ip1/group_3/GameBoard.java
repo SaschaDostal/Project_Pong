@@ -28,8 +28,6 @@ public class GameBoard extends JPanel {
         setMinimumSize(new Dimension(300, 300));
         setMaximumSize(new Dimension(2560, 2560));
         setPreferredSize(new Dimension(Scaling.sizeX, Scaling.sizeY));
-        setVisible(true);
-        setEnabled(true);
         for (GameComponent comp : gameComponents) {
             add(comp);
         }
@@ -48,6 +46,7 @@ public class GameBoard extends JPanel {
         
         
 
+        gameComponents[7].paintComponent(graphics);
         gameComponents[1].paintComponent(graphics);
         gameComponents[2].paintComponent(graphics);
         gameComponents[5].paintComponent(graphics);
@@ -55,7 +54,6 @@ public class GameBoard extends JPanel {
         gameComponents[0].paintComponent(graphics);
         gameComponents[3].paintComponent(graphics);
         gameComponents[4].paintComponent(graphics);
-        gameComponents[7].paintComponent(graphics);
         
     }
 

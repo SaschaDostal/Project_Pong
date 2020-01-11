@@ -18,7 +18,6 @@ public class GameWindow extends JFrame {
     public GameWindow(GameBoard board) {
         this.gameBoard = board;
         initialize();
-        this.setVisible(true);
     }
 
     public GameBoard getGameBoard() {
