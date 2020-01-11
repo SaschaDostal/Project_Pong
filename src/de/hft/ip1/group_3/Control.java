@@ -1,6 +1,5 @@
 package de.hft.ip1.group_3;
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
