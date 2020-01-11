@@ -59,6 +59,8 @@ java -jar de.hft.group-3-pong-0.0.X.jar
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
+* [Eclipse](https://www.eclipse.org/) - Java IDE
+* [Java](https://www.java.com/en/) - Programming language
 
 ## Authors
 
