@@ -138,11 +138,20 @@ public class Control implements ActionListener {
         playsc.setScore1(Score.getPointsOfPlayer(1));
         playsc.setScore2(Score.getPointsOfPlayer(2));
         board.draw();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        timer.stop();
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                timer.restart();
+            }
+        });
         board.getBall().setDirection(board.getBall().randomDirections());
         board.getBall().setSpeed((float) 1.05);
     }
