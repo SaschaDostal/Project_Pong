@@ -126,6 +126,8 @@ public class Control implements ActionListener {
     }
 
     public void reset() {
+        board.getBall().setFloatPosX((float)(Scaling.sizeX / 2.0 - Scaling.ballRecX / 2.0));
+        board.getBall().setFloatPosY((float)(Scaling.sizeY / 2.0 - Scaling.ballRecY / 2.0));
         board.getBall().pos.setX(Scaling.sizeX / 2 - Scaling.ballRecX / 2);
         board.getBall().pos.setY(Scaling.sizeY / 2 - Scaling.ballRecY / 2);
         board.getBall().hitbox.setLocation(board.getBall().pos.getX(), board.getBall().pos.getY());

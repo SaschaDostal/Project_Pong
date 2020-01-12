@@ -5,6 +5,9 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class Ball extends GameComponent {
+    
+    private float floatPosX = this.pos.getX();
+    private float floatPosY = this.pos.getY();
 
     private static final long serialVersionUID = 1L;
     private int lastComponentHit = 0;
@@ -27,8 +30,11 @@ public class Ball extends GameComponent {
     }
 
     public void move() {
-        pos.setX(pos.getX() + 3 * Scaling.sizeX/1000 * direction[0]);
-        pos.setY(pos.getY() + 3 * Scaling.sizeX/1000 * direction[1]);
+        float scale = (float) (2*Scaling.sizeX/1000.0);
+        floatPosX += scale*direction[0];
+        floatPosY += scale*direction[1];
+        pos.setX(floatPosX);
+        pos.setY(floatPosY);
         this.hitbox.setLocation(pos.getX(), pos.getY());
     }
 
@@ -50,6 +56,14 @@ public class Ball extends GameComponent {
     
     public float[] getDirection() {
         return this.direction;
+    }
+    
+    public void setFloatPosX( float x ) {
+        this.floatPosX = x;
+    }
+    
+    public void setFloatPosY( float y ) {
+        this.floatPosY = y;
     }
     
     public float[] randomDirections() {
