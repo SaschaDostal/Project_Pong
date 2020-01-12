@@ -45,7 +45,7 @@ public class Control implements ActionListener {
     }
 
     private void step() {
-        for (float i = (float) 0.5; i < board.getBall().getSpeed(); i += 0.25) {
+        for (float i = (float) 0.25; i < board.getBall().getSpeed(); i += 0.25) {
             collision(board.getGameComponents());
             board.getBall().move();
 //            board.draw();
@@ -91,7 +91,6 @@ public class Control implements ActionListener {
                     new float[] { board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] });
             if (board.getBall().getSpeed() < 6) {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 0.25);
-                System.out.println(board.getBall().getSpeed());
             }
             board.getBall().setLastComponentHit(1);
         }
@@ -101,7 +100,6 @@ public class Control implements ActionListener {
                     new float[] { board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] });
             if (board.getBall().getSpeed() < 6) {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 0.25);
-                System.out.println(board.getBall().getSpeed());
             }
             board.getBall().setLastComponentHit(2);
         }
@@ -158,6 +156,7 @@ public class Control implements ActionListener {
                     e.printStackTrace();
                 }
                 timer.restart();
+                endGame();
             }
         });
         board.getBall().setDirection(board.getBall().randomDirections());
@@ -195,5 +194,24 @@ public class Control implements ActionListener {
 
         timer.start();
         window.setVisible(true);
+    }
+    
+    public void endGame() {
+        if (Score.getPointsOfPlayer(1) >= 3 || Score.getPointsOfPlayer(2) >= 3) {
+            if (playerNames[0].contentEquals("")) {
+                playerNames[0] = "Player 1";
+            }
+            if (playerNames[1].contentEquals("")) {
+                playerNames[1] = "Player 2";
+            }
+            Score.printScore(playerNames);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            System.exit(0);
+        }
     }
 }

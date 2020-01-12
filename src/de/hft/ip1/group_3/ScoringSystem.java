@@ -76,18 +76,17 @@ public class ScoringSystem {
             }
             switch (numberOfPlayers) {
             case 1:
-                writer.append(numberOfPlayers + " player game. Score: " + names[0] + ": " + pointsPlayer1 + "\n");
+                writer.append("Score: " + names[0] + ": " + pointsPlayer1 + "\n");
                 break;
             case 2:
-                writer.append(numberOfPlayers + " player game. Scores: " + names[0] + ": " + pointsPlayer1 + ", "
-                        + names[1] + ": " + pointsPlayer2 + "\n");
+                writer.append( "Score: <" + pointsPlayer2 + " : " + pointsPlayer1 + ">, " + names[0] + " vs. " + names[1] + "\n");
                 break;
             case 3:
-                writer.append(numberOfPlayers + " player game. Scores: " + names[0] + ": " + pointsPlayer1 + ", "
+                writer.append("Scores: " + names[0] + ": " + pointsPlayer1 + ", "
                         + names[1] + ": " + pointsPlayer2 + ", " + names[2] + ": " + pointsPlayer3 + "\n");
                 break;
             case 4:
-                writer.append(numberOfPlayers + " player game. Scores: " + names[0] + ": " + pointsPlayer1 + ", "
+                writer.append("Scores: " + names[0] + ": " + pointsPlayer1 + ", "
                         + names[1] + ": " + pointsPlayer2 + ", " + names[2] + ": " + pointsPlayer3 + ", " + names[3]
                         + ": " + pointsPlayer4 + "\n");
                 break;
