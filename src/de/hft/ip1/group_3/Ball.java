@@ -30,7 +30,7 @@ public class Ball extends GameComponent {
     }
 
     public void move() {
-        float scale = (float) (2*Scaling.sizeX/1000.0);
+        float scale = (float) (Scaling.sizeX/1000.0);
         floatPosX += scale*direction[0];
         floatPosY += scale*direction[1];
         pos.setX(floatPosX);
