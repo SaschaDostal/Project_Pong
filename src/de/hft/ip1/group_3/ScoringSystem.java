@@ -12,7 +12,7 @@ public class ScoringSystem {
     private int pointsPlayer4 = 0;
     private int numberOfPlayers;
 
-    ScoringSystem(int numberOfPlayers) {
+    public ScoringSystem(int numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
     }
 

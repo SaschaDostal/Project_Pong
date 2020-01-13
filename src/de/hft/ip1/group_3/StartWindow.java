@@ -186,7 +186,7 @@ public class StartWindow extends JFrame {
 
             public void actionPerformed(ActionEvent e) {
 
-                con.Startgame(textField_3.getText(), textField_2.getText(), slider.getValue());
+                con.startGame(textField_3.getText(), textField_2.getText(), slider.getValue());
 
                 dispose();
             }

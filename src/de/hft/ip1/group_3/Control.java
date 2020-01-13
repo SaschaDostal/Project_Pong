@@ -18,7 +18,7 @@ public class Control implements ActionListener {
     private Ball ball = null;
     private GameBoard board = null;
     private Movement mov;
-    private ScoringSystem Score;
+    private ScoringSystem score;
     private PlayerScore playsc;
     private Timer timer;
 
@@ -26,7 +26,7 @@ public class Control implements ActionListener {
 
         Control me = new Control();
         me.timer = new Timer(25, me);
-        me.Score = new ScoringSystem(2);
+        me.score = new ScoringSystem(2);
         me.mov = new Movement();
 
         EventQueue.invokeLater(new Runnable() {
@@ -117,13 +117,13 @@ public class Control implements ActionListener {
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 5)) {
-            Score.addPointToPlayer(1);
+            score.addPointToPlayer(1);
             board.getBall().setLastComponentHit(5);
             reset();
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[6].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 6)) {
-            Score.addPointToPlayer(2);
+            score.addPointToPlayer(2);
             board.getBall().setLastComponentHit(6);
             reset();
         }
@@ -141,8 +141,8 @@ public class Control implements ActionListener {
         board.getPlayerBar2().pos.setY(Scaling.playerBarPos2Y);
         board.getPlayerBar2().hitbox.setLocation(Scaling.playerBarPos2X, Scaling.playerBarPos2Y);
 
-        playsc.setScore1(Score.getPointsOfPlayer(1));
-        playsc.setScore2(Score.getPointsOfPlayer(2));
+        playsc.setScore1(score.getPointsOfPlayer(1));
+        playsc.setScore2(score.getPointsOfPlayer(2));
         board.draw();
 
         timer.stop();
@@ -163,7 +163,7 @@ public class Control implements ActionListener {
         board.getBall().setSpeed((float) 1.0);
     }
 
-    public void Startgame(String name1, String name2, int sizeX) {
+    public void startGame(String name1, String name2, int sizeX) {
         playerNames = new String[] { name1, name2 };
 
         Scaling.sizeX = sizeX;
@@ -197,14 +197,14 @@ public class Control implements ActionListener {
     }
     
     public void endGame() {
-        if (Score.getPointsOfPlayer(1) >= 3 || Score.getPointsOfPlayer(2) >= 3) {
+        if (score.getPointsOfPlayer(1) >= 3 || score.getPointsOfPlayer(2) >= 3) {
             if (playerNames[0].contentEquals("")) {
                 playerNames[0] = "Player 1";
             }
             if (playerNames[1].contentEquals("")) {
                 playerNames[1] = "Player 2";
             }
-            Score.printScore(playerNames);
+            score.printScore(playerNames);
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
