@@ -14,7 +14,8 @@ What things you need to install the software and how to install them
 #### Java
 ```
 Linux:
->=openjdk-8-jre package
+>=jdk8-openjdk package
+>=jre8-openjdk package
 >=maven 3.6 package
 
 Windows:
