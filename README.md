@@ -20,6 +20,7 @@ Linux:
 Windows:
 https://www.java.com/en/download/
 https://howtodoinjava.com/maven/how-to-install-maven-on-windows/
+https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 ```
 
 ### Installing
