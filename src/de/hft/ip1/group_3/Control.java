@@ -167,6 +167,7 @@ public class Control implements ActionListener {
         playerNames = new String[] { name1, name2 };
 
         Scaling.sizeX = sizeX;
+        @SuppressWarnings("unused")
         Scaling scale = new Scaling();
         System.out.println(Scaling.sizeX);
 
