@@ -38,7 +38,7 @@ public class Control implements ActionListener {
         me.score = new ScoringSystem(2);
         me.mov = new Movement();
         me.APPlayer = new AACPlayer("Sounds/Appral.mp4");
-        me.BAPlayer = new AACPlayer("Sounds/Back.mp4");
+        me.BAPlayer = new AACPlayer("Sounds/BackWerk.mp4");
         
         EventQueue.invokeLater(new Runnable() {
 
@@ -46,7 +46,8 @@ public class Control implements ActionListener {
             public void run() {
                 me.startWindow = new StartWindow(me);
                 me.startWindow.setVisible(true);
-                me.APPlayer.play();
+                Sound.PlaySound("Appral.wav");
+                Sound.sound("Appral.wav");
             }
         });
     }
@@ -104,7 +105,7 @@ public class Control implements ActionListener {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
             board.getBall().setLastComponentHit(1);
-            APPlayer.play();
+            Sound.sound("Appral.wav");
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 2)) {
@@ -113,19 +114,19 @@ public class Control implements ActionListener {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
             board.getBall().setLastComponentHit(2);
-            APPlayer.play();
+            Sound.sound("Appral.wav");
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 3)) {
             board.getBall().setDirection( board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) );
             board.getBall().setLastComponentHit(3);
-            APPlayer.play();
+            Sound.sound("Appral.wav");
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 4)) {
             board.getBall().setDirection( board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) );
             board.getBall().setLastComponentHit(4);
-            APPlayer.play();
+            Sound.sound("Appral.wav");
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 5)) {
@@ -206,7 +207,7 @@ public class Control implements ActionListener {
 
         timer.start();
         window.setVisible(true);
-        APPlayer.play();
+        Sound.sound("Appral.wav");
         BAPlayer.play();
         BAPlayer.enableLoop();
     }
