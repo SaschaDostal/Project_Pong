@@ -54,7 +54,9 @@ public class Ball extends GameComponent {
         this.direction[0] = x;
         this.direction[1] = y;
     }
-    
+    public void setDirection( float[] dir) {
+        this.direction = dir;
+    }
     public float[] getDirection() {
         return this.direction;
     }
@@ -69,7 +71,7 @@ public class Ball extends GameComponent {
     
     public float[] randomDirections() {
         float[] dir = new float[2];
-        dir[0] = (float) (Math.random() * 0.5 + 1.3);
+        dir[0] = (float) (Math.random() * 0.8 + 1);
         dir[1] = (float) (Math.sqrt(4 - dir[0]*dir[0]));
         
         int quadrant = (int) (Math.random() * 4);
