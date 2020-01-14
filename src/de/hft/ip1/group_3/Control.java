@@ -32,7 +32,9 @@ public class Control implements ActionListener {
     private Timer timer;
     private AACPlayer APPlayer;
     private AACPlayer BAPlayer;
-    
+    private int maxScore;
+
+
     public static void main(String[] args) {
 
         Control me = new Control();
@@ -177,8 +179,9 @@ public class Control implements ActionListener {
         board.getBall().setSpeed(3);
     }
 
-    public void startGame(String name1, String name2, int sizeX) {
+    public void startGame(String name1, String name2, int sizeX, int maxScore) {
         playerNames = new String[] { name1, name2 };
+        this.maxScore = maxScore;
         PlayerNames displayName = new PlayerNames(0, new Position(0, 0), true, new Rectangle(), name1, name2);
         Scaling.sizeX = sizeX;
         @SuppressWarnings("unused")
@@ -214,7 +217,7 @@ public class Control implements ActionListener {
     }
 
     public void endGame() {
-        if (score.getPointsOfPlayer(1) >= 3 || score.getPointsOfPlayer(2) >= 3) {
+        if (score.getPointsOfPlayer(1) >= maxScore || score.getPointsOfPlayer(2) >= maxScore) {
             if (playerNames[0].contentEquals("")) {
                 playerNames[0] = "Player 1";
             }
