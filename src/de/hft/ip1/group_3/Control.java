@@ -94,7 +94,7 @@ public class Control implements ActionListener {
         if (gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 1)) {
             board.getBall().setDirection( board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] );
-            if (board.getBall().getSpeed() < 6) {
+            if (board.getBall().getSpeed() < 11) {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
             board.getBall().setLastComponentHit(1);
@@ -102,7 +102,7 @@ public class Control implements ActionListener {
         if (gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 2)) {
             board.getBall().setDirection( board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] );
-            if (board.getBall().getSpeed() < 6) {
+            if (board.getBall().getSpeed() < 11) {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
             board.getBall().setLastComponentHit(2);
