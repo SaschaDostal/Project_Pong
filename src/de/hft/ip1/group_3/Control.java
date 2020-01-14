@@ -1,11 +1,17 @@
 package de.hft.ip1.group_3;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 
 public class Control implements ActionListener {
 
@@ -126,8 +132,8 @@ public class Control implements ActionListener {
     }
 
     public void reset() {
-        board.getBall().setFloatPosX((float)(Scaling.sizeX / 2.0 - Scaling.ballRecX / 2.0));
-        board.getBall().setFloatPosY((float)(Scaling.sizeY / 2.0 - Scaling.ballRecY / 2.0));
+        board.getBall().setFloatPosX((float) (Scaling.sizeX / 2.0 - Scaling.ballRecX / 2.0));
+        board.getBall().setFloatPosY((float) (Scaling.sizeY / 2.0 - Scaling.ballRecY / 2.0));
         board.getBall().pos.setX(Scaling.sizeX / 2 - Scaling.ballRecX / 2);
         board.getBall().pos.setY(Scaling.sizeY / 2 - Scaling.ballRecY / 2);
         board.getBall().hitbox.setLocation(board.getBall().pos.getX(), board.getBall().pos.getY());
@@ -161,7 +167,7 @@ public class Control implements ActionListener {
 
     public void startGame(String name1, String name2, int sizeX) {
         playerNames = new String[] { name1, name2 };
-
+        PlayerNames displayName = new PlayerNames(0, new Position(0, 0), true, new Rectangle(), name1, name2);
         Scaling.sizeX = sizeX;
         @SuppressWarnings("unused")
         Scaling scale = new Scaling();
@@ -184,15 +190,14 @@ public class Control implements ActionListener {
         goals[1] = new Goal(3, new Position(Scaling.wallPos4X, Scaling.wallPos4Y), true,
                 new Rectangle(Scaling.wallRec1X, Scaling.wallRec1Y));
         board = new GameBoard(new GameComponent[] { ball, players[0].getBar(), players[1].getBar(), walls[0], walls[1],
-                goals[0], goals[1], playsc });
-
+                goals[0], goals[1], playsc, displayName });
         window = new GameWindow(board);
         window.addKeyListener(mov.getKeyListener());
 
         timer.start();
         window.setVisible(true);
     }
-    
+
     public void endGame() {
         if (score.getPointsOfPlayer(1) >= 3 || score.getPointsOfPlayer(2) >= 3) {
             if (playerNames[0].contentEquals("")) {
@@ -202,12 +207,18 @@ public class Control implements ActionListener {
                 playerNames[1] = "Player 2";
             }
             score.printScore(playerNames);
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+
+//            JDialog win = new JDialog(window, "Finish", JDialog.DEFAULT_MODALITY_TYPE);
+            window.setVisible(false);
+            window.setEnabled(false);
+            timer.stop();
+            UIManager.put("OptionPane.messageFont", new Font("Impact", Font.PLAIN, 40));
+            UIManager.put("OptionPane.buttonFont", new Font("Impact", Font.ITALIC, 20));
+            JOptionPane.showConfirmDialog(window,
+                    "GAME OVER!\nScore: <" + score.getPointsOfPlayer(2) + " : " + score.getPointsOfPlayer(1) + ">, "
+                            + playerNames[0] + " vs. " + playerNames[1],
+                    ((score.getPointsOfPlayer(2) > score.getPointsOfPlayer(1)) ? "Player1" : "Player2") + " wins",
+                    JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
             System.exit(0);
         }
     }
