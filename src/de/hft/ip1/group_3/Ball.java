@@ -25,8 +25,9 @@ public class Ball extends GameComponent {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.setColor(Color.decode("0x" + Integer.toHexString(speed * 35) + "00"
-                + (((30 / speed) > 0x10) ? Integer.toHexString(30 / speed) : "0" + Integer.toHexString(30 / speed))));
+        g.setColor(Color.decode(
+                "0x" + Integer.toHexString(255) + ((((3 * 255) / speed) > 0x10) ? Integer.toHexString((3 * 255) / speed)
+                        : "0" + Integer.toHexString((3 * 255) / speed)) + "00"));
         g.fillOval(pos.getX(), pos.getY(), hitbox.width, hitbox.height);
     }
 
