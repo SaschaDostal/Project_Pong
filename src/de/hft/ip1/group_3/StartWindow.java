@@ -20,6 +20,7 @@ import javax.swing.BoxLayout;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JSlider;
+import javax.swing.JComboBox;
 
 public class StartWindow extends JFrame {
 
@@ -33,7 +34,7 @@ public class StartWindow extends JFrame {
 
     public StartWindow(Control con) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 450, 340);
         setTitle("Pong Startmenu");
         setLocationRelativeTo(null);
 
@@ -45,7 +46,7 @@ public class StartWindow extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setBackground(Color.DARK_GRAY);
-        panel.setPreferredSize(new Dimension(100, 100));
+        panel.setPreferredSize(new Dimension(100, 70));
         contentPane.add(panel);
         panel.setLayout(new BorderLayout(0, 0));
 
@@ -140,30 +141,46 @@ public class StartWindow extends JFrame {
         panel_1.add(panel_5, BorderLayout.CENTER);
         panel_5.setLayout(new BoxLayout(panel_5, BoxLayout.Y_AXIS));
 
-        JLabel lblNewLabel_2 = new JLabel("choose size:");
+        JLabel lblNewLabel_2 = new JLabel("choose window size:");
         lblNewLabel_2.setFont(new Font("MS PGothic", Font.BOLD, 18));
         lblNewLabel_2.setForeground(Color.WHITE);
         panel_5.add(lblNewLabel_2);
+        
+                JPanel panel_6 = new JPanel();
+                panel_6.setBackground(Color.DARK_GRAY);
+                panel_5.add(panel_6);
+                panel_6.setLayout(new BorderLayout(0, 0));
+                
+                        JLabel lblNewLabel_4 = new JLabel("small");
+                        lblNewLabel_4.setBackground(Color.DARK_GRAY);
+                        lblNewLabel_4.setForeground(Color.WHITE);
+                        panel_6.add(lblNewLabel_4, BorderLayout.WEST);
+                        
+                                JLabel lblLarge = new JLabel("large");
+                                lblLarge.setForeground(Color.WHITE);
+                                panel_6.add(lblLarge, BorderLayout.EAST);
 
         JSlider slider = new JSlider();
         slider.setMaximum(1350);
         slider.setMinimum(500);
         slider.setValue(1000);
         panel_5.add(slider);
-
-        JPanel panel_6 = new JPanel();
-        panel_6.setBackground(Color.DARK_GRAY);
-        panel_5.add(panel_6);
-        panel_6.setLayout(new BorderLayout(0, 0));
-
-        JLabel lblNewLabel_4 = new JLabel("small");
-        lblNewLabel_4.setBackground(Color.DARK_GRAY);
-        lblNewLabel_4.setForeground(Color.WHITE);
-        panel_6.add(lblNewLabel_4, BorderLayout.WEST);
-
-        JLabel lblLarge = new JLabel("large");
-        lblLarge.setForeground(Color.WHITE);
-        panel_6.add(lblLarge, BorderLayout.EAST);
+        
+        JLabel label_2 = new JLabel("");
+        label_2.setPreferredSize(new Dimension(0, 10));
+        panel_5.add(label_2);
+        
+        JLabel lblChooseMaxScore = new JLabel("choose max score:");
+        lblChooseMaxScore.setForeground(Color.WHITE);
+        lblChooseMaxScore.setFont(new Font("MS PGothic", Font.BOLD, 18));
+        panel_5.add(lblChooseMaxScore);
+        
+        JComboBox comboBox = new JComboBox();
+        comboBox.setFont(new Font("MS PGothic", Font.BOLD, 18));
+        panel_5.add(comboBox);
+        comboBox.addItem("3");
+        comboBox.addItem("5");
+        comboBox.addItem("10");
 
         JLabel label_3 = new JLabel("");
         label_3.setPreferredSize(new Dimension(80, 6));
@@ -191,7 +208,7 @@ public class StartWindow extends JFrame {
                 if (textField_2.getText().contentEquals("")) {
                     textField_2.setText("Player 2"); ;
                 }
-                con.startGame(textField_3.getText(), textField_2.getText(), slider.getValue());
+                con.startGame(textField_3.getText(), textField_2.getText(), slider.getValue(), Integer.parseInt((String)comboBox.getItemAt(comboBox.getSelectedIndex())));
 
                 dispose();
             }
