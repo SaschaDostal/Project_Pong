@@ -8,6 +8,10 @@ import java.awt.Rectangle;
 public class PlayerNames extends GameComponent {
 
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private String name1;
     private String name2;
     public PlayerNames(int id, Position pos, boolean visible, Rectangle hitbox, String name1, String name2) {
