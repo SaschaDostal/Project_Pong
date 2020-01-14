@@ -187,7 +187,7 @@ public class StartWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 con.startGame(textField_3.getText(), textField_2.getText(), slider.getValue());
-
+                Sound.PlaySound("Sounds/Backgroundmusic.mp4");
                 dispose();
             }
         });
