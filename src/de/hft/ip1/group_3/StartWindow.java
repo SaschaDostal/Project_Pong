@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +23,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JSlider;
 import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
 
 public class StartWindow extends JFrame {
 
@@ -170,6 +173,12 @@ public class StartWindow extends JFrame {
         label_2.setPreferredSize(new Dimension(0, 10));
         panel_5.add(label_2);
         
+        JLabel lblPlatz = new JLabel("               " + slider.getValue() + " x " + (int) (slider.getValue()*0.7));
+        lblPlatz.setHorizontalTextPosition(SwingConstants.CENTER);
+        lblPlatz.setHorizontalAlignment(SwingConstants.CENTER);
+        lblPlatz.setForeground(Color.GREEN);
+        panel_5.add(lblPlatz);
+        
         JLabel lblChooseMaxScore = new JLabel("choose max score:");
         lblChooseMaxScore.setForeground(Color.WHITE);
         lblChooseMaxScore.setFont(new Font("MS PGothic", Font.BOLD, 18));
@@ -198,7 +207,13 @@ public class StartWindow extends JFrame {
         textField_2.addKeyListener(key);
         textField_3.addKeyListener(key);
         slider.addKeyListener(key);
-
+        comboBox.addKeyListener(key);
+        lblPlatz.setText("              " + slider.getValue() + " x " + (int) (slider.getValue()*0.7) + " px");
+        slider.addChangeListener( new ChangeListener() {
+            public void stateChanged(ChangeEvent arg0) {
+                // TODO Auto-generated method stub
+                lblPlatz.setText("              " + slider.getValue() + " x " + (int) (slider.getValue()*0.7) + " px");
+            }});
         btnStart.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
