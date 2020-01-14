@@ -50,8 +50,9 @@ public class Ball extends GameComponent {
         this.lastComponentHit = lastComponentHit;
     }
     
-    public void setDirection( float[] dir) {
-        this.direction = dir;
+    public void setDirection( float x, float y) {
+        this.direction[0] = x;
+        this.direction[1] = y;
     }
     
     public float[] getDirection() {

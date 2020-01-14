@@ -87,8 +87,7 @@ public class Control implements ActionListener {
     private void collision(GameComponent[] gameComponents) {
         if (gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 1)) {
-            board.getBall().setDirection(
-                    new float[] { board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] });
+            board.getBall().setDirection( board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] );
             if (board.getBall().getSpeed() < 6) {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
@@ -96,8 +95,7 @@ public class Control implements ActionListener {
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 2)) {
-            board.getBall().setDirection(
-                    new float[] { board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] });
+            board.getBall().setDirection( board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] );
             if (board.getBall().getSpeed() < 6) {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
@@ -105,14 +103,12 @@ public class Control implements ActionListener {
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 3)) {
-            board.getBall().setDirection(
-                    new float[] { board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) });
+            board.getBall().setDirection( board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) );
             board.getBall().setLastComponentHit(3);
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 4)) {
-            board.getBall().setDirection(
-                    new float[] { board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) });
+            board.getBall().setDirection( board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) );
             board.getBall().setLastComponentHit(4);
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())
