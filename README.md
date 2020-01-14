@@ -14,12 +14,14 @@ What things you need to install the software and how to install them
 #### Java
 ```
 Linux:
->=openjdk-8-jre package
+>=jdk8-openjdk package
+>=jre8-openjdk package
 >=maven 3.6 package
 
 Windows:
 https://www.java.com/en/download/
 https://howtodoinjava.com/maven/how-to-install-maven-on-windows/
+https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 ```
 
 ### Installing
@@ -29,7 +31,8 @@ A step by step series of examples that tell you how to get a development env run
 Cloning the repository
 
 ```
-git clone https://gitlab.rz.hft-stuttgart.de/IP1/WS19_20/group-3-pong
+git clone https://gitlab.rz.hft-stuttgart.de/IP1/WS19_20/group-3-pong.git
+git lfs pull
 ```
 
 Importing project

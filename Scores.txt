@@ -1,2 +1,2 @@
-4 player game. Scores: Hans: 0, Klaus: 0, Peter: 0, Franz: 0
-2 player game. Scores: Hans: 0, Klaus: 0
+Score: <3 : 0>, Player 1 vs. Player 2
+Score: <2 : 3>, Peter vs. Gerd

@@ -18,7 +18,7 @@ public class Control implements ActionListener {
     private Ball ball = null;
     private GameBoard board = null;
     private Movement mov;
-    private ScoringSystem Score;
+    private ScoringSystem score;
     private PlayerScore playsc;
     private Timer timer;
 
@@ -26,7 +26,7 @@ public class Control implements ActionListener {
 
         Control me = new Control();
         me.timer = new Timer(25, me);
-        me.Score = new ScoringSystem(2);
+        me.score = new ScoringSystem(2);
         me.mov = new Movement();
 
         EventQueue.invokeLater(new Runnable() {
@@ -45,7 +45,7 @@ public class Control implements ActionListener {
     }
 
     private void step() {
-        for (float i = 0; i < board.getBall().getSpeed(); i += 0.7) {
+        for (int i = 0; i < board.getBall().getSpeed(); i++) {
             collision(board.getGameComponents());
             board.getBall().move();
 //            board.draw();
@@ -87,43 +87,43 @@ public class Control implements ActionListener {
     private void collision(GameComponent[] gameComponents) {
         if (gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 1)) {
-            board.getBall().setDirection(
-                    new float[] { board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] });
-            board.getBall().setSpeed(board.getBall().getSpeed() * 1.1);
+            board.getBall().setDirection( board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] );
+            if (board.getBall().getSpeed() < 6) {
+                board.getBall().setSpeed(board.getBall().getSpeed() + 1);
+            }
             board.getBall().setLastComponentHit(1);
        //     Sound.PlaySound("Appral.wav");
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 2)) {
-            board.getBall().setDirection(
-                    new float[] { board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] });
-            board.getBall().setSpeed(board.getBall().getSpeed() * 1.1);
+            board.getBall().setDirection( board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] );
+            if (board.getBall().getSpeed() < 6) {
+                board.getBall().setSpeed(board.getBall().getSpeed() + 1);
+            }
             board.getBall().setLastComponentHit(2);
          //   Sound.PlaySound("Appral.wav");
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 3)) {
-            board.getBall().setDirection(
-                    new float[] { board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) });
+            board.getBall().setDirection( board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) );
             board.getBall().setLastComponentHit(3);
         //    Sound.PlaySound("Appral.wav");
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 4)) {
-            board.getBall().setDirection(
-                    new float[] { board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) });
+            board.getBall().setDirection( board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) );
             board.getBall().setLastComponentHit(4);
          //   Sound.PlaySound("Appral.wav");
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 5)) {
-            Score.addPointToPlayer(1);
+            score.addPointToPlayer(1);
             board.getBall().setLastComponentHit(5);
             reset();
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[6].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 6)) {
-            Score.addPointToPlayer(2);
+            score.addPointToPlayer(2);
             board.getBall().setLastComponentHit(6);
             reset();
         }
@@ -141,8 +141,8 @@ public class Control implements ActionListener {
         board.getPlayerBar2().pos.setY(Scaling.playerBarPos2Y);
         board.getPlayerBar2().hitbox.setLocation(Scaling.playerBarPos2X, Scaling.playerBarPos2Y);
 
-        playsc.setScore1(Score.getPointsOfPlayer(1));
-        playsc.setScore2(Score.getPointsOfPlayer(2));
+        playsc.setScore1(score.getPointsOfPlayer(1));
+        playsc.setScore2(score.getPointsOfPlayer(2));
         board.draw();
 
         timer.stop();
@@ -156,23 +156,25 @@ public class Control implements ActionListener {
                     e.printStackTrace();
                 }
                 timer.restart();
+                endGame();
             }
         });
         board.getBall().setDirection(board.getBall().randomDirections());
-        board.getBall().setSpeed((float) 1.05);
+        board.getBall().setSpeed(3);
     }
 
-    public void Startgame(String name1, String name2, int sizeX) {
+    public void startGame(String name1, String name2, int sizeX) {
         playerNames = new String[] { name1, name2 };
 
         Scaling.sizeX = sizeX;
+        @SuppressWarnings("unused")
         Scaling scale = new Scaling();
         System.out.println(Scaling.sizeX);
 
         playsc = new PlayerScore(10, new Position(0, 0), true, new Rectangle(0, 0));
 
         ball = new Ball(1, new Position(Scaling.ballPosX, Scaling.ballPosY), true,
-                new Rectangle(Scaling.ballRecX, Scaling.ballRecY), (float) 1.05);
+                new Rectangle(Scaling.ballRecX, Scaling.ballRecY), 3);
         players[0] = new Player(0, new PlayerBar(0, new Position(Scaling.playerBarPos1X, Scaling.playerBarPos1Y), true,
                 new Rectangle(Scaling.playerBarRecX, Scaling.playerBarRecY), 10));
         players[1] = new Player(1, new PlayerBar(1, new Position(Scaling.playerBarPos2X, Scaling.playerBarPos2Y), true,
@@ -193,5 +195,24 @@ public class Control implements ActionListener {
 
         timer.start();
         window.setVisible(true);
+    }
+    
+    public void endGame() {
+        if (score.getPointsOfPlayer(1) >= 3 || score.getPointsOfPlayer(2) >= 3) {
+            if (playerNames[0].contentEquals("")) {
+                playerNames[0] = "Player 1";
+            }
+            if (playerNames[1].contentEquals("")) {
+                playerNames[1] = "Player 2";
+            }
+            score.printScore(playerNames);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            System.exit(0);
+        }
     }
 }

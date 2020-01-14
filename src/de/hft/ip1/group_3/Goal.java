@@ -6,6 +6,8 @@ import java.awt.Rectangle;
 
 public class Goal extends GameComponent {
 
+    private static final long serialVersionUID = 1L;
+
     public Goal(int id, Position pos, boolean visible, Rectangle hitbox) {
         super(id, pos, visible, hitbox);
         // TODO Auto-generated constructor stub
