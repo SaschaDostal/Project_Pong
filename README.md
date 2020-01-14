@@ -31,7 +31,8 @@ A step by step series of examples that tell you how to get a development env run
 Cloning the repository
 
 ```
-git clone https://gitlab.rz.hft-stuttgart.de/IP1/WS19_20/group-3-pong
+git clone https://gitlab.rz.hft-stuttgart.de/IP1/WS19_20/group-3-pong.git
+git lfs pull
 ```
 
 Importing project
