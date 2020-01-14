@@ -34,7 +34,6 @@ public class GameWindow extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        System.out.println(gameBoard.getPreferredSize());
         add(gameBoard);
         pack();
     }

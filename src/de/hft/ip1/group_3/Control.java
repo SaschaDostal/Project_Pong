@@ -1,17 +1,16 @@
 package de.hft.ip1.group_3;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.UIManager;
+
+import de.wiest_lukas.lib.AACPlayer;
 
 public class Control implements ActionListener {
 
@@ -27,7 +26,10 @@ public class Control implements ActionListener {
     private ScoringSystem score;
     private PlayerScore playsc;
     private Timer timer;
+    private AACPlayer APPlayer;
+    private AACPlayer BAPlayer;
     private int maxScore;
+
 
     public static void main(String[] args) {
 
@@ -35,13 +37,16 @@ public class Control implements ActionListener {
         me.timer = new Timer(25, me);
         me.score = new ScoringSystem(2);
         me.mov = new Movement();
-
+        me.APPlayer = new AACPlayer("Sounds/Appral.mp4");
+        me.BAPlayer = new AACPlayer("Sounds/Backgroundmusic.mp4");
+        
         EventQueue.invokeLater(new Runnable() {
 
             @Override
             public void run() {
                 me.startWindow = new StartWindow(me);
                 me.startWindow.setVisible(true);
+                me.APPlayer.play();
             }
         });
     }
@@ -99,6 +104,7 @@ public class Control implements ActionListener {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
             board.getBall().setLastComponentHit(1);
+            APPlayer.play();
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 2)) {
@@ -107,16 +113,19 @@ public class Control implements ActionListener {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
             board.getBall().setLastComponentHit(2);
+            APPlayer.play();
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 3)) {
             board.getBall().setDirection( board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) );
             board.getBall().setLastComponentHit(3);
+            APPlayer.play();
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 4)) {
             board.getBall().setDirection( board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) );
             board.getBall().setLastComponentHit(4);
+            APPlayer.play();
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 5)) {
@@ -173,7 +182,6 @@ public class Control implements ActionListener {
         Scaling.sizeX = sizeX;
         @SuppressWarnings("unused")
         Scaling scale = new Scaling();
-        System.out.println(Scaling.sizeX);
 
         playsc = new PlayerScore(10, new Position(0, 0), true, new Rectangle(0, 0));
 
@@ -198,6 +206,9 @@ public class Control implements ActionListener {
 
         timer.start();
         window.setVisible(true);
+        APPlayer.play();
+        BAPlayer.play();
+        BAPlayer.enableLoop();
     }
 
     public void endGame() {
@@ -220,6 +231,7 @@ public class Control implements ActionListener {
                             + playerNames[0] + " vs. " + playerNames[1],
                     ((score.getPointsOfPlayer(2) > score.getPointsOfPlayer(1)) ? "Player1" : "Player2") + " wins",
                     JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
+            BAPlayer.stop();
             System.exit(0);
         }
     }

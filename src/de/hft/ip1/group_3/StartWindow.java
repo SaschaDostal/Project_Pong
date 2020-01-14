@@ -223,7 +223,9 @@ public class StartWindow extends JFrame {
                 if (textField_2.getText().contentEquals("")) {
                     textField_2.setText("Player 2"); ;
                 }
+
                 con.startGame(textField_3.getText(), textField_2.getText(), slider.getValue(), Integer.parseInt((String)comboBox.getItemAt(comboBox.getSelectedIndex())));
+
 
                 dispose();
             }
