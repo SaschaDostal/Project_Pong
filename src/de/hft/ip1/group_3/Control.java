@@ -51,7 +51,7 @@ public class Control implements ActionListener {
     }
 
     private void step() {
-        for (float i = (float) 0.25; i < board.getBall().getSpeed(); i += 0.25) {
+        for (int i = 0; i < board.getBall().getSpeed(); i++) {
             collision(board.getGameComponents());
             board.getBall().move();
 //            board.draw();
@@ -93,32 +93,28 @@ public class Control implements ActionListener {
     private void collision(GameComponent[] gameComponents) {
         if (gameComponents[0].getHitbox().intersects(gameComponents[1].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 1)) {
-            board.getBall().setDirection(
-                    new float[] { board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] });
+            board.getBall().setDirection( board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] );
             if (board.getBall().getSpeed() < 6) {
-                board.getBall().setSpeed(board.getBall().getSpeed() + 0.25);
+                board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
             board.getBall().setLastComponentHit(1);
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 2)) {
-            board.getBall().setDirection(
-                    new float[] { board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] });
+            board.getBall().setDirection( board.getBall().getDirection()[0] * (-1), board.getBall().getDirection()[1] );
             if (board.getBall().getSpeed() < 6) {
-                board.getBall().setSpeed(board.getBall().getSpeed() + 0.25);
+                board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
             board.getBall().setLastComponentHit(2);
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 3)) {
-            board.getBall().setDirection(
-                    new float[] { board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) });
+            board.getBall().setDirection( board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) );
             board.getBall().setLastComponentHit(3);
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 4)) {
-            board.getBall().setDirection(
-                    new float[] { board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) });
+            board.getBall().setDirection( board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) );
             board.getBall().setLastComponentHit(4);
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())
@@ -166,7 +162,7 @@ public class Control implements ActionListener {
             }
         });
         board.getBall().setDirection(board.getBall().randomDirections());
-        board.getBall().setSpeed((float) 1.0);
+        board.getBall().setSpeed(3);
     }
 
     public void startGame(String name1, String name2, int sizeX) {
@@ -180,7 +176,7 @@ public class Control implements ActionListener {
         playsc = new PlayerScore(10, new Position(0, 0), true, new Rectangle(0, 0));
 
         ball = new Ball(1, new Position(Scaling.ballPosX, Scaling.ballPosY), true,
-                new Rectangle(Scaling.ballRecX, Scaling.ballRecY), (float) 1.0);
+                new Rectangle(Scaling.ballRecX, Scaling.ballRecY), 3);
         players[0] = new Player(0, new PlayerBar(0, new Position(Scaling.playerBarPos1X, Scaling.playerBarPos1Y), true,
                 new Rectangle(Scaling.playerBarRecX, Scaling.playerBarRecY), 10));
         players[1] = new Player(1, new PlayerBar(1, new Position(Scaling.playerBarPos2X, Scaling.playerBarPos2Y), true,
