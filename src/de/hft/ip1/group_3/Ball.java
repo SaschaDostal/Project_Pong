@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class Ball extends GameComponent {
-    
+
     private float floatPosX = this.pos.getX();
     private float floatPosY = this.pos.getY();
 
@@ -25,14 +25,15 @@ public class Ball extends GameComponent {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.setColor(Color.RED);
+        g.setColor(Color.decode("0x" + Integer.toHexString(speed * 35) + "00"
+                + (((30 / speed) > 0x10) ? Integer.toHexString(30 / speed) : "0" + Integer.toHexString(30 / speed))));
         g.fillOval(pos.getX(), pos.getY(), hitbox.width, hitbox.height);
     }
 
     public void move() {
-        float scale = (float) (Scaling.sizeX/1000.0);
-        floatPosX += scale*direction[0];
-        floatPosY += scale*direction[1];
+        float scale = (float) (Scaling.sizeX / 1000.0);
+        floatPosX += scale * direction[0];
+        floatPosY += scale * direction[1];
         pos.setX(floatPosX);
         pos.setY(floatPosY);
         this.hitbox.setLocation(pos.getX(), pos.getY());
@@ -49,31 +50,33 @@ public class Ball extends GameComponent {
     public void setLastComponentHit(int lastComponentHit) {
         this.lastComponentHit = lastComponentHit;
     }
-    
-    public void setDirection( float x, float y) {
+
+    public void setDirection(float x, float y) {
         this.direction[0] = x;
         this.direction[1] = y;
     }
-    public void setDirection( float[] dir) {
+
+    public void setDirection(float[] dir) {
         this.direction = dir;
     }
+
     public float[] getDirection() {
         return this.direction;
     }
-    
-    public void setFloatPosX( float x ) {
+
+    public void setFloatPosX(float x) {
         this.floatPosX = x;
     }
-    
-    public void setFloatPosY( float y ) {
+
+    public void setFloatPosY(float y) {
         this.floatPosY = y;
     }
-    
+
     public float[] randomDirections() {
         float[] dir = new float[2];
         dir[0] = (float) (Math.random() * 0.8 + 1);
-        dir[1] = (float) (Math.sqrt(4 - dir[0]*dir[0]));
-        
+        dir[1] = (float) (Math.sqrt(4 - dir[0] * dir[0]));
+
         int quadrant = (int) (Math.random() * 4);
         if (quadrant == 0) {
             dir[0] = -dir[0];

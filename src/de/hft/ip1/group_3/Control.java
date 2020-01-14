@@ -208,7 +208,6 @@ public class Control implements ActionListener {
             }
             score.printScore(playerNames);
 
-//            JDialog win = new JDialog(window, "Finish", JDialog.DEFAULT_MODALITY_TYPE);
             window.setVisible(false);
             window.setEnabled(false);
             timer.stop();
