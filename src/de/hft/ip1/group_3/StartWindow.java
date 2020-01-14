@@ -146,7 +146,7 @@ public class StartWindow extends JFrame {
         panel_5.add(lblNewLabel_2);
 
         JSlider slider = new JSlider();
-        slider.setMaximum(1250);
+        slider.setMaximum(1350);
         slider.setMinimum(500);
         slider.setValue(1000);
         panel_5.add(slider);
@@ -185,7 +185,12 @@ public class StartWindow extends JFrame {
         btnStart.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-
+                if (textField_3.getText().contentEquals("")) {
+                    textField_3.setText("Player 1");
+                }
+                if (textField_2.getText().contentEquals("")) {
+                    textField_2.setText("Player 2"); ;
+                }
                 con.startGame(textField_3.getText(), textField_2.getText(), slider.getValue());
 
                 dispose();

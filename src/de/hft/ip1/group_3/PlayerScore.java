@@ -32,6 +32,8 @@ public class PlayerScore extends GameComponent {
                 boxBoxBloxs2.y + boxBoxBloxs2.height / 2);
 
     }
+    
+    
 
     private String score1;
     private String score2;
