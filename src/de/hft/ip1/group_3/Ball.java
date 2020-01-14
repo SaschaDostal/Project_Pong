@@ -11,15 +11,15 @@ public class Ball extends GameComponent {
 
     private static final long serialVersionUID = 1L;
     private int lastComponentHit = 0;
-    private float speed;
+    private int speed;
     private float[] direction = randomDirections();
 
-    public Ball(int id, Position pos, boolean visible, Rectangle hitbox, float speed) {
+    public Ball(int id, Position pos, boolean visible, Rectangle hitbox, int speed) {
         super(id, pos, visible, hitbox);
         this.speed = speed;
     }
 
-    public float getSpeed() {
+    public int getSpeed() {
         return this.speed;
     }
 
@@ -38,8 +38,8 @@ public class Ball extends GameComponent {
         this.hitbox.setLocation(pos.getX(), pos.getY());
     }
 
-    public void setSpeed(double d) {
-        this.speed = (float) d;
+    public void setSpeed(int d) {
+        this.speed = d;
     }
 
     public int getLastComponentHit() {
