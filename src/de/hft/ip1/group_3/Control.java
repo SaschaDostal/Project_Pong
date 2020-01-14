@@ -182,7 +182,6 @@ public class Control implements ActionListener {
         Scaling.sizeX = sizeX;
         @SuppressWarnings("unused")
         Scaling scale = new Scaling();
-        System.out.println(Scaling.sizeX);
 
         playsc = new PlayerScore(10, new Position(0, 0), true, new Rectangle(0, 0));
 
