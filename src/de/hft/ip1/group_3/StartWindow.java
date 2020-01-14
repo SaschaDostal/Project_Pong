@@ -148,43 +148,43 @@ public class StartWindow extends JFrame {
         lblNewLabel_2.setFont(new Font("MS PGothic", Font.BOLD, 18));
         lblNewLabel_2.setForeground(Color.WHITE);
         panel_5.add(lblNewLabel_2);
-        
-                JPanel panel_6 = new JPanel();
-                panel_6.setBackground(Color.DARK_GRAY);
-                panel_5.add(panel_6);
-                panel_6.setLayout(new BorderLayout(0, 0));
-                
-                        JLabel lblNewLabel_4 = new JLabel("small");
-                        lblNewLabel_4.setBackground(Color.DARK_GRAY);
-                        lblNewLabel_4.setForeground(Color.WHITE);
-                        panel_6.add(lblNewLabel_4, BorderLayout.WEST);
-                        
-                                JLabel lblLarge = new JLabel("large");
-                                lblLarge.setForeground(Color.WHITE);
-                                panel_6.add(lblLarge, BorderLayout.EAST);
+
+        JPanel panel_6 = new JPanel();
+        panel_6.setBackground(Color.DARK_GRAY);
+        panel_5.add(panel_6);
+        panel_6.setLayout(new BorderLayout(0, 0));
+
+        JLabel lblNewLabel_4 = new JLabel("small");
+        lblNewLabel_4.setBackground(Color.DARK_GRAY);
+        lblNewLabel_4.setForeground(Color.WHITE);
+        panel_6.add(lblNewLabel_4, BorderLayout.WEST);
+
+        JLabel lblLarge = new JLabel("large");
+        lblLarge.setForeground(Color.WHITE);
+        panel_6.add(lblLarge, BorderLayout.EAST);
 
         JSlider slider = new JSlider();
         slider.setMaximum(1350);
         slider.setMinimum(500);
         slider.setValue(1000);
         panel_5.add(slider);
-        
+
         JLabel label_2 = new JLabel("");
         label_2.setPreferredSize(new Dimension(0, 10));
         panel_5.add(label_2);
-        
-        JLabel lblPlatz = new JLabel("               " + slider.getValue() + " x " + (int) (slider.getValue()*0.7));
+
+        JLabel lblPlatz = new JLabel("               " + slider.getValue() + " x " + (int) (slider.getValue() * 0.7));
         lblPlatz.setHorizontalTextPosition(SwingConstants.CENTER);
         lblPlatz.setHorizontalAlignment(SwingConstants.CENTER);
         lblPlatz.setForeground(Color.GREEN);
         panel_5.add(lblPlatz);
-        
+
         JLabel lblChooseMaxScore = new JLabel("choose max score:");
         lblChooseMaxScore.setForeground(Color.WHITE);
         lblChooseMaxScore.setFont(new Font("MS PGothic", Font.BOLD, 18));
         panel_5.add(lblChooseMaxScore);
-        
-        JComboBox comboBox = new JComboBox();
+
+        JComboBox<String> comboBox = new JComboBox<>();
         comboBox.setFont(new Font("MS PGothic", Font.BOLD, 18));
         panel_5.add(comboBox);
         comboBox.addItem("3");
@@ -208,12 +208,14 @@ public class StartWindow extends JFrame {
         textField_3.addKeyListener(key);
         slider.addKeyListener(key);
         comboBox.addKeyListener(key);
-        lblPlatz.setText("              " + slider.getValue() + " x " + (int) (slider.getValue()*0.7) + " px");
-        slider.addChangeListener( new ChangeListener() {
+        lblPlatz.setText("              " + slider.getValue() + " x " + (int) (slider.getValue() * 0.7) + " px");
+        slider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent arg0) {
                 // TODO Auto-generated method stub
-                lblPlatz.setText("              " + slider.getValue() + " x " + (int) (slider.getValue()*0.7) + " px");
-            }});
+                lblPlatz.setText(
+                        "              " + slider.getValue() + " x " + (int) (slider.getValue() * 0.7) + " px");
+            }
+        });
         btnStart.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -221,11 +223,12 @@ public class StartWindow extends JFrame {
                     textField_3.setText("Player 1");
                 }
                 if (textField_2.getText().contentEquals("")) {
-                    textField_2.setText("Player 2"); ;
+                    textField_2.setText("Player 2");
+                    ;
                 }
 
-                con.startGame(textField_3.getText(), textField_2.getText(), slider.getValue(), Integer.parseInt((String)comboBox.getItemAt(comboBox.getSelectedIndex())));
-
+                con.startGame(textField_3.getText(), textField_2.getText(), slider.getValue(),
+                        Integer.parseInt(comboBox.getItemAt(comboBox.getSelectedIndex())));
 
                 dispose();
             }
