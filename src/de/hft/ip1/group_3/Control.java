@@ -37,7 +37,6 @@ public class Control implements ActionListener {
         me.timer = new Timer(25, me);
         me.score = new ScoringSystem(2);
         me.mov = new Movement();
-        me.APPlayer = new AACPlayer("Sounds/Appral.mp4");
         me.BAPlayer = new AACPlayer("Sounds/BackWerk.mp4");
         
         EventQueue.invokeLater(new Runnable() {
@@ -46,8 +45,8 @@ public class Control implements ActionListener {
             public void run() {
                 me.startWindow = new StartWindow(me);
                 me.startWindow.setVisible(true);
-                Sound.PlaySound("Appral.wav");
-                Sound.sound("Appral.wav");
+                Sound.PlaySound("Sounds/Appral.wav");
+                Sound.sound("Sounds/Appral.wav");
             }
         });
     }
@@ -207,7 +206,7 @@ public class Control implements ActionListener {
 
         timer.start();
         window.setVisible(true);
-        Sound.sound("Appral.wav");
+        Sound.sound("Sounds/Appral.wav");
         BAPlayer.play();
         BAPlayer.enableLoop();
     }
