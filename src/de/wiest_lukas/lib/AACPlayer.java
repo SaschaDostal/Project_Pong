@@ -114,7 +114,8 @@ public class AACPlayer
                     cont    = new MP4Container(new RandomAccessFile(files[currentTrack], "r")); // open titel with random access
                     movie   = cont.getMovie();                          // get content from container,
 
-                    track = (AudioTrack) movie.getTracks().get(1);
+                    track = null;
+
                     for (Track elem : movie.getTracks()) {
                         if(elem instanceof AudioTrack) {
                             track   = (AudioTrack) elem; // grab audio track and set the audioformat
