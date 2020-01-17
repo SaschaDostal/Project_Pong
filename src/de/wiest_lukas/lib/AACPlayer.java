@@ -130,7 +130,7 @@ public class AACPlayer
                     line.open();                                        // open and
 
                     FloatControl volume= (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN); 
-                    volume.setValue(volume.getValue()*this.volume);
+                    volume.setValue(this.volume);
 
 
                     line.start();                                       // start it
