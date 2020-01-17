@@ -248,8 +248,16 @@ public class Control implements ActionListener {
                             + playerNames[0] + " vs. " + playerNames[1],
                     ((score.getPointsOfPlayer(2) > score.getPointsOfPlayer(1)) ? "Player1" : "Player2") + " wins",
                     JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
-
-            System.exit(0);
+            EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        EndWindow window = new EndWindow();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            
         }
     }
 }
