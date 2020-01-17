@@ -70,6 +70,7 @@ class Wall {
   +paintComponent(g: Graphics)
 }
 class Goal {
+  -serialVersionUID: long
   +Wall(id: int, pos: Position, visible: boolean, hitbox: Rectangle)
   +paintComponent(g: Graphics)
 }
@@ -87,12 +88,42 @@ class Control {
   -timer: Timer
   -walls: Wall[]
   -window: GameWindow
+  -BAPlayer: AACPlayer
+  -GOPlayer: AACPLayer
   +actionPerformed(e: ActionEvent)
   -collision(gameComponents: GameComponent[])
   +endGame()
   +reset()
   +startGame()
   -step()
+}
+class AACPLayer {
+  -files: File[]
+  -interrupted: boolean
+  -loop: boolean
+  -muted: boolean
+  -paused: boolean
+  -playback: Thread
+  -repeat: boolean
+  +AACPlayer(File)
+  +AACPlayer(File[])
+  +AACPlayer(String)
+  +enableLoop()
+  +disableLoop()
+  +enableRepeat()
+  +disableRepeat()
+  +isMuted(): boolean
+  +isPlaying(): boolean
+  +pause()
+  +play()
+  +resume()
+  +stop()
+  +toggleMute()
+  -initThread()
+}
+class Sound{
+  {static}PlaySound(sound: String)
+  {static}sound(sound: String)
 }
 class StartWindow {
   -serialVersionUID: long
@@ -209,6 +240,8 @@ Control "1" -- "1" GameWindow: manages >
 Control "1" -- "1" Movement: manages >
 Control  -- Scaling: scales <
 Control "1" -- "1" StartWindow: has <
+Control "1" -- "m" AACPLayer: manages >
+Control -- Sound: manages >
 Player "1" o-- "1" PlayerBar: has >
 note "m = [1, inf)" as N1
 ```
