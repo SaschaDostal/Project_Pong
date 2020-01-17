@@ -37,7 +37,6 @@ public class Control implements ActionListener {
         me.timer = new Timer(25, me);
         me.score = new ScoringSystem(2);
         me.mov = new Movement();
-        me.APPlayer = new AACPlayer("Sounds/Appral.mp4");
         me.BAPlayer = new AACPlayer("Sounds/BackWerk.mp4");
         
         EventQueue.invokeLater(new Runnable() {
@@ -46,8 +45,7 @@ public class Control implements ActionListener {
             public void run() {
                 me.startWindow = new StartWindow(me);
                 me.startWindow.setVisible(true);
-                Sound.PlaySound("Appral.wav");
-                Sound.sound("Appral.wav");
+
             }
         });
     }
@@ -127,17 +125,20 @@ public class Control implements ActionListener {
             board.getBall().setDirection( board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) );
             board.getBall().setLastComponentHit(4);
             Sound.sound("Appral.wav");
+            Sound.sound("Goal.wav");
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 5)) {
             score.addPointToPlayer(1);
             board.getBall().setLastComponentHit(5);
+            Sound.sound("Goal.wav");
             reset();
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[6].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 6)) {
             score.addPointToPlayer(2);
             board.getBall().setLastComponentHit(6);
+            Sound.sound("Goal.wav");
             reset();
         }
     }
@@ -207,7 +208,7 @@ public class Control implements ActionListener {
 
         timer.start();
         window.setVisible(true);
-        Sound.sound("Appral.wav");
+        
         BAPlayer.play();
         BAPlayer.enableLoop();
     }
@@ -225,6 +226,7 @@ public class Control implements ActionListener {
             window.setVisible(false);
             window.setEnabled(false);
             timer.stop();
+            BAPlayer.stop();
             UIManager.put("OptionPane.messageFont", new Font("Impact", Font.PLAIN, 40));
             UIManager.put("OptionPane.buttonFont", new Font("Impact", Font.ITALIC, 20));
             JOptionPane.showConfirmDialog(window,
@@ -232,7 +234,7 @@ public class Control implements ActionListener {
                             + playerNames[0] + " vs. " + playerNames[1],
                     ((score.getPointsOfPlayer(2) > score.getPointsOfPlayer(1)) ? "Player1" : "Player2") + " wins",
                     JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_OPTION);
-            BAPlayer.stop();
+           
             System.exit(0);
         }
     }
