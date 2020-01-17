@@ -49,9 +49,8 @@ public class EndWindow {
             BufferedReader reader3 = new BufferedReader(new FileReader("Scores3.txt"));
             ArrayList<String> lines = new ArrayList<String>();
             while (reader3.ready()) {
-                lines.add(reader3.readLine());
+                model3.addRow(new String[] { reader3.readLine() });
             }
-            model3.addRow(new String[] { lines.get(lines.size() - 1) });
             table10 = new JTable(model3);
             reader3.close();
         } catch (IOException e) {
@@ -69,9 +68,8 @@ public class EndWindow {
             BufferedReader reader5 = new BufferedReader(new FileReader("Scores5.txt"));
             ArrayList<String> lines = new ArrayList<String>();
             while (reader5.ready()) {
-                lines.add(reader5.readLine());
+                model5.addRow(new String[] { reader5.readLine() });
             }
-            model5.addRow(new String[] { lines.get(lines.size() - 1) });
             table10 = new JTable(model5);
             reader5.close();
         } catch (IOException e) {
@@ -89,9 +87,8 @@ public class EndWindow {
             BufferedReader reader10 = new BufferedReader(new FileReader("Scores10.txt"));
             ArrayList<String> lines = new ArrayList<String>();
             while (reader10.ready()) {
-                lines.add(reader10.readLine());
+                model10.addRow(new String[] { reader10.readLine()});
             }
-            model10.addRow(new String[] { lines.get(lines.size() - 1) });
             table10 = new JTable(model10);
             reader10.close();
         } catch (IOException e) {
