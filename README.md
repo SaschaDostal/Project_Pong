@@ -46,7 +46,7 @@ Enjoy!
 Look at the current Version
 
 ```
-mvn install
+mvn package
 cd target/
 java -jar de.hft.group-3-pong-0.0.X.jar
 ```
@@ -54,7 +54,7 @@ java -jar de.hft.group-3-pong-0.0.X.jar
 ## Deployment
 
 ```
-mvn install
+mvn package
 cd target/
 java -jar de.hft.group-3-pong-0.0.X.jar
 ```
