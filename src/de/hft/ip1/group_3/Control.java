@@ -37,7 +37,7 @@ public class Control implements ActionListener {
         me.timer = new Timer(25, me);
         me.score = new ScoringSystem(2);
         me.mov = new Movement();
-        me.BAPlayer = new AACPlayer("Sounds/BackWerkQuiet.mp4");
+        me.BAPlayer = new AACPlayer("Sounds/BackWerkLoud.mp4");
         me.GOPlayer = new AACPlayer("Sounds/GoalNew.mp4");
         me.APPlayer = new AACPlayer[] {
                 new AACPlayer("Sounds/AppralQuiet.mp4"),
