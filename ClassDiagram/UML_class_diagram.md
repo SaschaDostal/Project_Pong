@@ -97,7 +97,7 @@ class Control {
   +startGame()
   -step()
 }
-class AACPLayer {
+class AACPlayer {
   -files: File[]
   -interrupted: boolean
   -loop: boolean

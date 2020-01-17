@@ -30,12 +30,13 @@ public class AACPlayer
     private boolean muted;      // if set, the playback goes on, but doesn't write the read bytes to the AudioSystem
     private boolean interrupted;// needed for Windows, as of broken SourceDataLine interrupt clearing on write method
     private File[]  files;      // file list that the playback will play down
+    private float volume;
 
     /**
      * creates a new Instance of AACPlayer with a set of Files to be played back.
      * @param files Filelist to playback.
      */
-    public AACPlayer(File[] files)
+    public AACPlayer(File[] files, float volume)
     {
         // init these fields
         loop        = false;
@@ -66,6 +67,8 @@ public class AACPlayer
             }
         }
 
+        this.volume = volume;
+        
         this.files = new File[validFiles.size()];       // initialize the filearray with the size of the found valid files
         for (int i=0; i < validFiles.size(); i++)       // and put them in
             this.files[i] = (File) validFiles.get(i);
@@ -75,18 +78,18 @@ public class AACPlayer
      * Player with only one File in List.
      * @param file 
      */
-    public AACPlayer(File file)
+    public AACPlayer(File file, float volume)
     {
-        this (new File[] {file});
+        this (new File[] {file}, volume);
     }
 
     /**
      * Instances a new Player with one File, Path given as String.
      * @param pathToFile 
      */
-    public AACPlayer(String pathToFile)
+    public AACPlayer(String pathToFile, float volume)
     {
-        this (new File (pathToFile));
+        this (new File (pathToFile), volume);
     }
 
     private void initThread()
@@ -105,7 +108,7 @@ public class AACPlayer
             int             currentTrack;   // index of current track from playlist
             MP4Container    cont;           // container to open the current track with
             Movie           movie;          // and get the content from the container
-
+            
             try
             {
                 // for-next loop to play each titel from the playlist once
@@ -125,6 +128,12 @@ public class AACPlayer
                     af      = new AudioFormat(track.getSampleRate(), track.getSampleSize(), track.getChannelCount(), true, true);
                     line    = AudioSystem.getSourceDataLine(af);        // get a DataLine from the AudioSystem
                     line.open();                                        // open and
+
+                    FloatControl volume= (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN); 
+                    
+                    volume.setValue(this.volume);
+
+
                     line.start();                                       // start it
 
                     dec     = new Decoder(track.getDecoderSpecificInfo());
