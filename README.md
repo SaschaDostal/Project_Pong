@@ -62,6 +62,7 @@ java -jar de.hft.group-3-pong-0.0.X.jar
 ### Alternative with IDE (eclipse)
 ```
 Run->Run As->Maven install
+repodir/target/de.hft.group-3-pong-0.0.X.jar
 ```
 
 ## Built With
