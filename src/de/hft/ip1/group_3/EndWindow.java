@@ -19,7 +19,7 @@ import javax.swing.BoxLayout;
 
 public class EndWindow {
 
-    private JFrame frame;
+    private JFrame frmScoreboard;
     private JTable table3;
     private JTable table5;
     private JTable table10;
@@ -29,20 +29,23 @@ public class EndWindow {
      */
     public EndWindow() {
         initialize();
-        frame.setVisible(true);
+        frmScoreboard.setVisible(true);
     }
 
     /**
      * Initialize the contents of the frame.
      */
     private void initialize() {
-        frame = new JFrame();
-        frame.setBounds(100, 100, 450, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
+
+        frmScoreboard = new JFrame();
+        frmScoreboard.setTitle("Scoreboard");
+        frmScoreboard.setBounds(100, 100, 450, 300);
+        frmScoreboard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frmScoreboard.setLocationRelativeTo(null);
+
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
+        frmScoreboard.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
         JPanel panel3 = new JPanel();
         tabbedPane.addTab("Highscore 3", null, panel3, null);
