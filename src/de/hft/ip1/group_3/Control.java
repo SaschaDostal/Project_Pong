@@ -26,7 +26,7 @@ public class Control implements ActionListener {
     private ScoringSystem score;
     private PlayerScore playsc;
     private Timer timer;
-    private AACPlayer APPlayer;
+    private AACPlayer GOPlayer;
     private AACPlayer BAPlayer;
     private int maxScore;
 
@@ -38,6 +38,7 @@ public class Control implements ActionListener {
         me.score = new ScoringSystem(2);
         me.mov = new Movement();
         me.BAPlayer = new AACPlayer("Sounds/BackWerk.mp4");
+        me.GOPlayer = new AACPlayer("Sounds/Goal.mp4");
         
         EventQueue.invokeLater(new Runnable() {
 
@@ -103,7 +104,7 @@ public class Control implements ActionListener {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
             board.getBall().setLastComponentHit(1);
-            Sound.sound("Appral.wav");
+            Sound.sound("Sounds/Appral.wav");
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[2].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 2)) {
@@ -112,33 +113,33 @@ public class Control implements ActionListener {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
             board.getBall().setLastComponentHit(2);
-            Sound.sound("Appral.wav");
+            Sound.sound("Sounds/Appral.wav");
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[3].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 3)) {
             board.getBall().setDirection( board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) );
             board.getBall().setLastComponentHit(3);
-            Sound.sound("Appral.wav");
+            Sound.sound("Sounds/Appral.wav");
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[4].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 4)) {
             board.getBall().setDirection( board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1) );
             board.getBall().setLastComponentHit(4);
-            Sound.sound("Appral.wav");
-            Sound.sound("Goal.wav");
+            Sound.sound("Sounds/Appral.wav");
+
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[5].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 5)) {
             score.addPointToPlayer(1);
             board.getBall().setLastComponentHit(5);
-            Sound.sound("Goal.wav");
+            GOPlayer.play();
             reset();
         }
         if (gameComponents[0].getHitbox().intersects(gameComponents[6].getHitbox())
                 && !(board.getBall().getLastComponentHit() == 6)) {
             score.addPointToPlayer(2);
             board.getBall().setLastComponentHit(6);
-            Sound.sound("Goal.wav");
+            GOPlayer.play();
             reset();
         }
     }
@@ -208,7 +209,9 @@ public class Control implements ActionListener {
 
         timer.start();
         window.setVisible(true);
-        
+
+        Sound.sound("Sounds/Appral.wav");
+
         BAPlayer.play();
         BAPlayer.enableLoop();
     }
