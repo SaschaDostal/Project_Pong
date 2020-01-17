@@ -65,6 +65,12 @@ Run->Run As->Maven install
 repodir/target/de.hft.group-3-pong-0.0.X.jar
 ```
 
+### Game Controls
+
+Player 1: UP - 'W', DOWN - 'S'
+
+Player 2: UP - 'UP-Arrow', DOWN - 'DOWN-Arrow'
+
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
