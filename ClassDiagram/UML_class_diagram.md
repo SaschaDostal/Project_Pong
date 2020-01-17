@@ -121,10 +121,6 @@ class AACPLayer {
   +toggleMute()
   -initThread()
 }
-class Sound{
-  {static}PlaySound(sound: String)
-  {static}sound(sound: String)
-}
 class StartWindow {
   -serialVersionUID: long
   -contentPane: JPanel
@@ -241,7 +237,6 @@ Control "1" -- "1" Movement: manages >
 Control  -- Scaling: scales <
 Control "1" -- "1" StartWindow: has <
 Control "1" -- "m" AACPLayer: manages >
-Control -- Sound: manages >
 Player "1" o-- "1" PlayerBar: has >
 note "m = [1, inf)" as N1
 ```

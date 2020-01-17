@@ -1,4 +1,0 @@
-Score: <3 : 0>, Player 1 vs. Player 2
-Score: <0 : 3>, Player 1 vs. Player 2
-Score: <3 : 2>, Player 1 vs. Player 2
-Score: <0 : 3>, Player 1 vs. Player 2
