@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.hft.group-3-pong</groupId>
     <artifactId>de.hft.group-3-pong</artifactId>
-    <version>0.0.6</version>
+    <version>0.0.7</version>
     <build>
         <sourceDirectory>src</sourceDirectory>
         <plugins>
@@ -36,7 +36,31 @@
                     </archive>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <targetPath>../Sounds</targetPath>
+                <directory>Sounds</directory>
+                <includes>
+                    <include>AppralQuiet.mp4</include>
+                    <include>BackWerkLoud.mp4</include>
+                    <include>GoalNew.mp4</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
     <repositories>
         <!-- local repository for local dependency -->
