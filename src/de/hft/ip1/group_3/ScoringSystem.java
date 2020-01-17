@@ -11,11 +11,16 @@ public class ScoringSystem {
     private int pointsPlayer3 = 0;
     private int pointsPlayer4 = 0;
     private int numberOfPlayers;
+    public int maxScore;
 
     public ScoringSystem(int numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
     }
-
+    
+    public void setMaxScore(int maxScore) {
+        this.maxScore = maxScore;
+    }
+    
     public int getPointsOfPlayer(int playerNumber) throws InvalidParameterException {
         if (playerNumber > numberOfPlayers) {
             throw new InvalidParameterException("Player does not exist!");
@@ -70,29 +75,83 @@ public class ScoringSystem {
     }
 
     public void printScore(String[] names) throws InvalidParameterException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Scores.txt", true));) {
-            if (names.length < numberOfPlayers) {
-                throw new InvalidParameterException("Not enough names for all players!");
+        if (maxScore == 3) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("Scores3.txt", true));) {
+                if (names.length < numberOfPlayers) {
+                    throw new InvalidParameterException("Not enough names for all players!");
+                }
+                switch (numberOfPlayers) {
+                case 1:
+                    writer.append("Score: " + names[0] + ": " + pointsPlayer1 + "\n");
+                    break;
+                case 2:
+                    writer.append("Score: <" + pointsPlayer2 + " : " + pointsPlayer1 + ">, " + names[0] + " vs. "
+                            + names[1] + "\n");
+                    break;
+                case 3:
+                    writer.append("Scores: " + names[0] + ": " + pointsPlayer1 + ", " + names[1] + ": " + pointsPlayer2
+                            + ", " + names[2] + ": " + pointsPlayer3 + "\n");
+                    break;
+                case 4:
+                    writer.append("Scores: " + names[0] + ": " + pointsPlayer1 + ", " + names[1] + ": " + pointsPlayer2
+                            + ", " + names[2] + ": " + pointsPlayer3 + ", " + names[3] + ": " + pointsPlayer4 + "\n");
+                    break;
+                }
+            } catch (IOException e) {
+                System.out.println(e);
             }
-            switch (numberOfPlayers) {
-            case 1:
-                writer.append("Score: " + names[0] + ": " + pointsPlayer1 + "\n");
-                break;
-            case 2:
-                writer.append( "Score: <" + pointsPlayer2 + " : " + pointsPlayer1 + ">, " + names[0] + " vs. " + names[1] + "\n");
-                break;
-            case 3:
-                writer.append("Scores: " + names[0] + ": " + pointsPlayer1 + ", "
-                        + names[1] + ": " + pointsPlayer2 + ", " + names[2] + ": " + pointsPlayer3 + "\n");
-                break;
-            case 4:
-                writer.append("Scores: " + names[0] + ": " + pointsPlayer1 + ", "
-                        + names[1] + ": " + pointsPlayer2 + ", " + names[2] + ": " + pointsPlayer3 + ", " + names[3]
-                        + ": " + pointsPlayer4 + "\n");
-                break;
+        }
+        if (maxScore == 5) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("Scores5.txt", true));) {
+                if (names.length < numberOfPlayers) {
+                    throw new InvalidParameterException("Not enough names for all players!");
+                }
+                switch (numberOfPlayers) {
+                case 1:
+                    writer.append("Score: " + names[0] + ": " + pointsPlayer1 + "\n");
+                    break;
+                case 2:
+                    writer.append("Score: <" + pointsPlayer2 + " : " + pointsPlayer1 + ">, " + names[0] + " vs. "
+                            + names[1] + "\n");
+                    break;
+                case 3:
+                    writer.append("Scores: " + names[0] + ": " + pointsPlayer1 + ", " + names[1] + ": " + pointsPlayer2
+                            + ", " + names[2] + ": " + pointsPlayer3 + "\n");
+                    break;
+                case 4:
+                    writer.append("Scores: " + names[0] + ": " + pointsPlayer1 + ", " + names[1] + ": " + pointsPlayer2
+                            + ", " + names[2] + ": " + pointsPlayer3 + ", " + names[3] + ": " + pointsPlayer4 + "\n");
+                    break;
+                }
+            } catch (IOException e) {
+                System.out.println(e);
             }
-        } catch (IOException e) {
-            System.out.println(e);
+        }
+        if (maxScore == 10) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("Scores10.txt", true));) {
+                if (names.length < numberOfPlayers) {
+                    throw new InvalidParameterException("Not enough names for all players!");
+                }
+                switch (numberOfPlayers) {
+                case 1:
+                    writer.append("Score: " + names[0] + ": " + pointsPlayer1 + "\n");
+                    break;
+                case 2:
+                    writer.append("Score: <" + pointsPlayer2 + " : " + pointsPlayer1 + ">, " + names[0] + " vs. "
+                            + names[1] + "\n");
+                    break;
+                case 3:
+                    writer.append("Scores: " + names[0] + ": " + pointsPlayer1 + ", " + names[1] + ": " + pointsPlayer2
+                            + ", " + names[2] + ": " + pointsPlayer3 + "\n");
+                    break;
+                case 4:
+                    writer.append("Scores: " + names[0] + ": " + pointsPlayer1 + ", " + names[1] + ": " + pointsPlayer2
+                            + ", " + names[2] + ": " + pointsPlayer3 + ", " + names[3] + ": " + pointsPlayer4 + "\n");
+                    break;
+                }
+            } catch (IOException e) {
+                System.out.println(e);
+            }
         }
     }
 

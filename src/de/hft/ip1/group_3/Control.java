@@ -29,7 +29,7 @@ public class Control implements ActionListener {
     private AACPlayer GOPlayer;
     private AACPlayer BAPlayer;
     private AACPlayer[] APPlayer;
-    private int maxScore;
+    public int maxScore;
 
     public static void main(String[] args) {
 
@@ -193,6 +193,7 @@ public class Control implements ActionListener {
     public void startGame(String name1, String name2, int sizeX, int maxScore) {
         playerNames = new String[] { name1, name2 };
         this.maxScore = maxScore;
+        this.score.setMaxScore(maxScore);
         PlayerNames displayName = new PlayerNames(0, new Position(0, 0), true, new Rectangle(), name1, name2);
         Scaling.sizeX = sizeX;
         @SuppressWarnings("unused")
