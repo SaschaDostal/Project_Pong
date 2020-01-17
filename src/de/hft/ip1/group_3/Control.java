@@ -109,7 +109,6 @@ public class Control implements ActionListener {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
             board.getBall().setLastComponentHit(1);
-//            Sound.sound("Sounds/AppralQuiet.wav");
             if (APPlayer[0].isPlaying())
                 APPlayer[0].stop();
             APPlayer[0].play();
@@ -121,7 +120,6 @@ public class Control implements ActionListener {
                 board.getBall().setSpeed(board.getBall().getSpeed() + 1);
             }
             board.getBall().setLastComponentHit(2);
-//            Sound.sound("Sounds/AppralQuiet.wav");
             if (APPlayer[1].isPlaying())
                 APPlayer[1].stop();
             APPlayer[1].play();
@@ -130,7 +128,6 @@ public class Control implements ActionListener {
                 && !(board.getBall().getLastComponentHit() == 3)) {
             board.getBall().setDirection(board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1));
             board.getBall().setLastComponentHit(3);
-//            Sound.sound("Sounds/AppralQuiet.wav");
             if (APPlayer[2].isPlaying())
                 APPlayer[2].stop();
             APPlayer[2].play();
@@ -139,7 +136,6 @@ public class Control implements ActionListener {
                 && !(board.getBall().getLastComponentHit() == 4)) {
             board.getBall().setDirection(board.getBall().getDirection()[0], board.getBall().getDirection()[1] * (-1));
             board.getBall().setLastComponentHit(4);
-//            Sound.sound("Sounds/AppralQuiet.wav");
             if (APPlayer[3].isPlaying())
                 APPlayer[3].stop();
             APPlayer[3].play();
@@ -226,7 +222,6 @@ public class Control implements ActionListener {
         timer.start();
         window.setVisible(true);
 
-//        Sound.sound("Sounds/AppralQuiet.wav");
 
         BAPlayer.play();
         BAPlayer.enableLoop();
