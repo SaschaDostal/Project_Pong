@@ -1,6 +1,9 @@
 # Pong
 
-Group-3 version of Pong
+Project work in the subject Software Project 1. This application is a Java implementation of the game Pong.
+
+## Preview
+![Alt text](./preview/preview_0.PNG)
 
 ## Getting Started
 
